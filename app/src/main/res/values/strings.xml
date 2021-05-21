@@ -1,0 +1,42 @@
+<resources>
+    <string name="app_name">CovMan</string>
+    <string name="token">cHJvdmlzaW9uAHVzZXIxQGJlNTlhMC52aWR5by5pbwA2Mzc1NTYwNjIxOQAANWY1ZWUxYTY0MWFlYzBlYzc3MmEzMjhmNjhiZDgyOTE2YjVjNjgwOTlmMzU3OThkNTZiODZiMTg3ZjQ4ODU3MTYyZjYxZTFlMDQ0MTUzZjczN2I2YTE4NDdmOTYzOTZm</string>
+    <string name="vidyoapi">e9e8acbf018a47d3b29bcbb45a4b6411</string>
+
+
+    <string name="action_settings">Settings</string>
+
+    <string name="title_settings_dialog">Permissions Required</string>
+    <string name="rationale_video_app">This app needs access to your camera and mic to make video calls</string>
+    <string name="rationale_ask_again">This app may not work correctly without the requested permissions. Open the app settings screen to modify app permissions.</string>
+
+    <string name="setting">Settings</string>
+    <string name="cancel">Cancel</string>
+
+    <string name="why_wash">Washing hands with <b>soap and water</b> or using alcohol based hand rub
+                        kills viruses that may be on your hands</string>
+
+    <string name="social_distance">WHY PHYSICAL DISTANCING?</string>
+
+    <string name="why_social_distancing">When someone coughs or sneezes they spray small liquid droplets from
+        their nose or mouth which may contain virus. If you are too close,
+        you can breathe in the droplets, including the COVID-19 virus if the
+        person coughing has the disease.</string>
+
+    <string name="touching_face">WHY AVOID TOUCHING FACE?</string>
+
+    <string name="why_touching_face"> Hands touch many surfaces and can pick up viruses. Once contaminated,
+        hands can transfer the virus to your eyes, nose or mouth.
+        From there, the virus can enter your body and can make you sick.</string>
+
+    <string name="stayhome">WHY STAY HOME IF UNWELL</string>
+
+    <string name="why_stayhome"> National and local authorities will have the most up
+        to date information on the
+        situation in your area. Calling in advance will allow your health care
+        provider to quickly direct you to the right health facility. This will also protect
+        you and help prevent spread of
+        viruses and other infections.</string>
+
+
+</resources>

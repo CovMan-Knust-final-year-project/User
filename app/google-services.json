@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "304799199053",
+    "firebase_url": "https://covman-fc80f-default-rtdb.firebaseio.com",
+    "project_id": "covman-fc80f",
+    "storage_bucket": "covman-fc80f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:304799199053:android:e8cfb43e9a7928a3c31104",
+        "android_client_info": {
+          "package_name": "com.tekdevisal.covman"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "304799199053-ohu9lrsjqgqocf1c5uhvrgglb8ivnqpk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tekdevisal.covman",
+            "certificate_hash": "cf466f3cc53b54741cefe303302b37e1a588e935"
+          }
+        },
+        {
+          "client_id": "304799199053-b3tpsir8v83n8bfijd4afr0mecg1mg11.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCBFXSoTZ-gC_qFNwvbu_C6m0XxP46cyW0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "304799199053-b3tpsir8v83n8bfijd4afr0mecg1mg11.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

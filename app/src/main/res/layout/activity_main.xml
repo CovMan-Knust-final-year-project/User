@@ -1,0 +1,625 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--    xmlns:tools="http://schemas.android.com/tools"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="match_parent"-->
+<!--    android:background="@color/colorAccent"-->
+<!--    tools:context=".MainActivity">-->
+
+<!--    <LinearLayout-->
+<!--        android:id="@+id/linearLayout2"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="vertical"-->
+<!--        android:padding="15dp"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent">-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/top_text"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:fontFamily="@font/quicksand_regular"-->
+<!--            android:gravity="center"-->
+<!--            android:text="CovMan helps protect your from COVID 19"-->
+<!--            android:textColor="@color/colorPrimaryDark"-->
+<!--            android:textSize="17sp" />-->
+<!--    </LinearLayout>-->
+
+<!--    <LinearLayout-->
+<!--        android:id="@+id/is_available_layout"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="horizontal"-->
+<!--        android:layout_marginLeft="40dp"-->
+<!--        android:layout_marginRight="40dp"-->
+<!--        android:visibility="gone"-->
+<!--        android:background="@drawable/curved_buttom_doc"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/linearLayout2">-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/textView"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_weight="1"-->
+<!--            android:textSize="15sp"-->
+<!--            android:paddingLeft="30dp"-->
+<!--            android:fontFamily="@font/life"-->
+<!--            android:text="Check if you ready" />-->
+
+<!--        <android.support.v7.widget.SwitchCompat-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:paddingRight="30dp"-->
+<!--            android:id="@+id/is_available_switch"-->
+<!--            android:layout_weight="2"/>-->
+<!--    </LinearLayout>-->
+
+<!--    <com.joooonho.SelectableRoundedImageView-->
+<!--        android:id="@+id/image"-->
+<!--        android:layout_width="200dp"-->
+<!--        android:layout_height="200dp"-->
+<!--        android:scaleType="centerCrop"-->
+<!--        android:src="@drawable/covid"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintVertical_bias="0.448"-->
+<!--        app:sriv_border_color="#442727"-->
+<!--        app:sriv_border_width="2dip"-->
+<!--        app:sriv_left_bottom_corner_radius="0dip"-->
+<!--        app:sriv_left_top_corner_radius="0dip"-->
+<!--        app:sriv_oval="false"-->
+<!--        app:sriv_right_bottom_corner_radius="100dip"-->
+<!--        app:sriv_right_top_corner_radius="100dip" />-->
+
+<!--    <com.ogaclejapan.arclayout.ArcLayout-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="128dp"-->
+<!--        android:layout_marginLeft="128dp"-->
+<!--        app:arc_axisRadius="140dp"-->
+<!--        app:arc_freeAngle="false"-->
+<!--        app:arc_origin="left"-->
+<!--        app:arc_radius="198dp"-->
+<!--        app:arc_reverseAngle="false"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintVertical_bias="0.428">-->
+
+<!--        <ImageView-->
+<!--            android:layout_width="66dp"-->
+<!--            android:layout_height="66dp"-->
+<!--            android:id="@+id/complain"-->
+<!--            android:src="@drawable/complain"-->
+<!--            android:scaleType="centerCrop"-->
+<!--            android:padding="10dp"-->
+<!--            android:background="@drawable/curved_corners_red"/>-->
+
+<!--        <ImageView-->
+<!--            android:layout_width="66dp"-->
+<!--            android:layout_height="66dp"-->
+<!--            android:id="@+id/chat"-->
+<!--            android:src="@drawable/chat"-->
+<!--            android:scaleType="centerCrop"-->
+<!--            android:padding="10dp"-->
+<!--            android:background="@drawable/curved_corners"/>-->
+
+<!--        <ImageView-->
+<!--            android:layout_width="66dp"-->
+<!--            android:layout_height="66dp"-->
+<!--            android:id="@+id/reports"-->
+<!--            android:src="@drawable/bell"-->
+<!--            android:scaleType="centerCrop"-->
+<!--            android:padding="10dp"-->
+<!--            android:visibility="gone"-->
+<!--            android:background="@drawable/curved_corners"/>-->
+
+<!--        <ImageView-->
+<!--            android:layout_width="66dp"-->
+<!--            android:layout_height="66dp"-->
+<!--            android:id="@+id/statistic"-->
+<!--            android:src="@drawable/statistic"-->
+<!--            android:scaleType="centerCrop"-->
+<!--            android:padding="10dp"-->
+<!--            android:background="@drawable/curved_corners"/>-->
+
+<!--        <ImageView-->
+<!--            android:id="@+id/info"-->
+<!--            android:layout_width="66dp"-->
+<!--            android:layout_height="66dp"-->
+<!--            android:src="@drawable/info"-->
+<!--            android:scaleType="centerCrop"-->
+<!--            android:padding="10dp"-->
+<!--            android:background="@drawable/curved_corners"/>-->
+
+
+<!--        <ImageView-->
+<!--            android:layout_width="66dp"-->
+<!--            android:layout_height="66dp"-->
+<!--            android:id="@+id/about_app"-->
+<!--            android:src="@drawable/android"-->
+<!--            android:scaleType="centerCrop"-->
+<!--            android:padding="10dp"-->
+<!--            android:background="@drawable/curved_corners"/>-->
+
+<!--        <ImageView-->
+<!--            android:layout_width="66dp"-->
+<!--            android:layout_height="66dp"-->
+<!--            android:id="@+id/logout"-->
+<!--            android:src="@drawable/exit"-->
+<!--            android:scaleType="centerCrop"-->
+<!--            android:padding="10dp"-->
+<!--            android:background="@drawable/curved_corners"/>-->
+
+<!--    </com.ogaclejapan.arclayout.ArcLayout>-->
+
+<!--&lt;!&ndash;    <ImageView&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_width="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_height="100dp"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:scaleType="centerCrop"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:padding="30dp"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:src="@drawable/covid_logo"&ndash;&gt;-->
+<!--&lt;!&ndash;        app:layout_constraintBottom_toBottomOf="parent"&ndash;&gt;-->
+<!--&lt;!&ndash;        app:layout_constraintStart_toStartOf="parent" />&ndash;&gt;-->
+
+<!--    <com.roughike.swipeselector.SwipeSelector-->
+<!--        android:id="@+id/swipe_selector"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="110dp"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:swipe_descriptionTextAppearance="@style/text_appearance"/>-->
+
+<!--</android.support.constraint.ConstraintLayout>-->
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorAccent"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="15dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/top_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/quicksand_regular"
+                android:gravity="center"
+                android:text="CovMan helps protect you from COVID 19"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="17sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/is_available_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:visibility="gone"
+            android:background="@drawable/curved_buttom_doc"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="15sp"
+                android:paddingLeft="30dp"
+                android:textColor="@color/colorAccent"
+                android:fontFamily="@font/quicksand_regular"
+                android:text="Check if you ready" />
+
+            <android.support.v7.widget.SwitchCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingRight="30dp"
+                android:id="@+id/is_available_switch"
+                android:layout_weight="2"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_weight="3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Hi, Jesse"
+                android:textSize="30sp"
+                android:gravity="center_vertical"
+                android:fontFamily="@font/quicksand_bold"
+                android:paddingLeft="10dp"
+                android:paddingTop="20dp"
+                android:paddingBottom="20dp"/>
+
+            <ImageView
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/cov"
+                android:scaleType="centerCrop"
+                android:layout_gravity="right"
+                android:layout_marginRight="-100dp"/>
+
+        </LinearLayout>
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Your Recent scan"
+                android:textColor="@color/shaded_red"
+                android:fontFamily="@font/quicksand_bold"
+                android:padding="10dp"/>
+
+            <include layout="@layout/recent_scans_attachment"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/complain"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_margin="10dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="25dp"
+                android:paddingBottom="25dp"
+                android:background="@drawable/item_selector_for_report_case"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:src="@drawable/complain"
+                    android:scaleType="centerCrop"
+                    android:layout_gravity="center"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Report Case"
+                    android:textStyle="bold"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@android:color/black"
+                    android:fontFamily="@font/quicksand_regular"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="Not feeling well? Let us know"
+                    android:fontFamily="@font/quicksand_regular"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/chat"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_margin="10dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="25dp"
+                android:paddingBottom="25dp"
+                android:background="@drawable/item_selector"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:src="@drawable/chat"
+                    android:scaleType="centerCrop"
+                    android:layout_gravity="center"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Video Chat Doctor"
+                    android:textStyle="bold"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@android:color/black"
+                    android:fontFamily="@font/quicksand_regular"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Have a face to face chat with Doc."
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/quicksand_regular"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/statistic"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_margin="10dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="25dp"
+                android:paddingBottom="25dp"
+                android:background="@drawable/item_selector"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:src="@drawable/statistic"
+                    android:scaleType="centerCrop"
+                    android:layout_gravity="center"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Statistics"
+                    android:textStyle="bold"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@android:color/black"
+                    android:fontFamily="@font/quicksand_regular"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="Be up to date with the numbers."
+                    android:fontFamily="@font/quicksand_regular"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/info"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_margin="10dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="25dp"
+                android:paddingBottom="25dp"
+                android:background="@drawable/item_selector"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:src="@drawable/info"
+                    android:scaleType="centerCrop"
+                    android:layout_gravity="center"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Learn more"
+                    android:textStyle="bold"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@android:color/black"
+                    android:fontFamily="@font/quicksand_regular"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="You know a lot. But there is more. Find out here"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/quicksand_regular"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/request_vaccine"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_margin="10dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="25dp"
+                android:paddingBottom="25dp"
+                android:background="@drawable/item_selector"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:scaleType="centerCrop"
+                    android:layout_gravity="center"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Request for Vaccine"
+                    android:textStyle="bold"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@android:color/black"
+                    android:fontFamily="@font/quicksand_regular"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Need vaccine delivered to your home?"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/quicksand_regular"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/scans"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_margin="10dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="25dp"
+                android:paddingBottom="25dp"
+                android:background="@drawable/item_selector"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:scaleType="centerCrop"
+                    android:layout_gravity="center"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="All Scans"
+                    android:textStyle="bold"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@android:color/black"
+                    android:fontFamily="@font/quicksand_regular"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="View all your previous scans"
+                    android:fontFamily="@font/quicksand_regular"/>
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/about_app"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_margin="10dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="25dp"
+                android:paddingBottom="25dp"
+                android:background="@drawable/item_selector"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:src="@drawable/android"
+                    android:scaleType="centerCrop"
+                    android:layout_gravity="center"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="About CovMan"
+                    android:textStyle="bold"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@android:color/black"
+                    android:fontFamily="@font/quicksand_regular"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="Find out what we are up to."
+                    android:fontFamily="@font/quicksand_regular"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/logout"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_margin="10dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="25dp"
+                android:paddingBottom="25dp"
+                android:background="@drawable/selected_item_background"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:src="@drawable/exit"
+                    android:scaleType="centerCrop"
+                    android:layout_gravity="center"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Leave"
+                    android:textStyle="bold"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/colorAccent"
+                    android:fontFamily="@font/quicksand_regular"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Come back soon. We are sad to see you leave."
+                    android:layout_marginTop="5dp"
+                    android:textColor="@color/colorAccent"
+                    android:fontFamily="@font/quicksand_regular"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="66dp"
+            android:layout_height="66dp"
+            android:id="@+id/reports"
+            android:src="@drawable/bell"
+            android:scaleType="centerCrop"
+            android:padding="10dp"
+            android:visibility="gone"
+            android:background="@drawable/curved_corners"/>
+
+    </LinearLayout>
+
+</ScrollView>

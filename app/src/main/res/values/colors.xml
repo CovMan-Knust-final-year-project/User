@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <color name="colorPrimary">#df3030</color>
+    <color name="colorPrimaryDark">#df3030</color>
+    <color name="colorAccent">#fcfcfc</color>
+    <color name="gray">#e6e6e6</color>
+    <color name="text_color">#937d14</color>
+    <color name="shaded_red">#A5333D</color>
+    <color name="navy_green">#285d00</color>
+    <color name="design_snackbar_background_color" tools:override="true">@color/colorPrimary</color>
+</resources>
