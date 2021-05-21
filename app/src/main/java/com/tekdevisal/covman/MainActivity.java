@@ -62,6 +62,10 @@ public class MainActivity extends AppCompatActivity {
             case R.id.chats:
                 startActivity(new Intent(MainActivity.this, MyChats.class));
                 break;
+
+            case R.id.profile:
+                startActivity(new Intent(MainActivity.this, ProfileActivity.class));
+                break;
         }
         return super.onOptionsItemSelected(item);
     }

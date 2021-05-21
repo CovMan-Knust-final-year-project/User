@@ -5,4 +5,8 @@
         android:title="Chats"
         android:icon="@android:drawable/sym_action_email"
         app:showAsAction="ifRoom"/>
+
+    <item android:id="@+id/profile"
+        android:title="Profile"
+        app:showAsAction="never"/>
 </menu>
