@@ -41,10 +41,12 @@ public class MainActivity extends AppCompatActivity {
     private Snackbar snackbar;
     private Accessories main_accessor;
     private String usertype;
-    private ImageView doc_reports;
-    private TextView top_text;
+    private LinearLayout doc_reports;
+    private TextView top_text, welcome_user, video_chat_text_one, video_chat_text_two;
     private SelectableRoundedImageView image;
-    private LinearLayout is_available_layout, covid_info, complain_, chat_, statistic, about_app, request_vaccine, scans;
+    private LinearLayout is_available_layout, covid_info, complain_, chat_, statistic, about_app,
+                        request_vaccine, scans, recent_scan_layout, request_vaccine_and_scans_layout,
+                        vaccine_requests_and_cases_layout;
     private SwitchCompat is_available_switch;
     private LocationHelper locationHelper;
     private Location myLocation;
@@ -53,6 +55,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main_menu, menu);
+
+        MenuItem wish_list      = menu.findItem(R.id.profile);
+
+        if(usertype.equals("doctor")){
+            wish_list.setVisible(false);
+        }
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -97,8 +105,12 @@ public class MainActivity extends AppCompatActivity {
 
 
         top_text            = findViewById(R.id.top_text);
+        welcome_user        = findViewById(R.id.welcome_user);
         image               = findViewById(R.id.image);
+        recent_scan_layout  = findViewById(R.id.recent_scan_layout);
         is_available_layout = findViewById(R.id.is_available_layout);
+        video_chat_text_one = findViewById(R.id.video_chat_text_one);
+        video_chat_text_two = findViewById(R.id.video_chat_text_two);
         covid_info          = findViewById(R.id.info);
         complain_           = findViewById(R.id.complain);
         chat_               = findViewById(R.id.chat);
@@ -106,20 +118,29 @@ public class MainActivity extends AppCompatActivity {
         about_app           = findViewById(R.id.about_app);
         request_vaccine     = findViewById(R.id.request_vaccine);
         scans               = findViewById(R.id.scans);
+        request_vaccine_and_scans_layout            = findViewById(R.id.request_vaccine_and_scans_layout);
+        vaccine_requests_and_cases_layout           = findViewById(R.id.vaccine_requests_and_caseslayout);
 
         doc_reports = findViewById(R.id.reports);
         is_available_switch = findViewById(R.id.is_available_switch);
 
         if(usertype.equals("doctor")){
-            top_text.setText("Help us aid in the fight against covid 19");
-            image.setImageDrawable(getResources().getDrawable(R.drawable.doctors));
+//            top_text.setText("Help us aid in the fight against covid 19");
+//            image.setImageDrawable(getResources().getDrawable(R.drawable.doctors));
+            top_text.setVisibility(View.GONE);
+            recent_scan_layout.setVisibility(View.GONE);
+            welcome_user.setText("Hi, \nDoc");
+
+            video_chat_text_one.setText("Video Chat Users");
+            video_chat_text_two.setText("Have a a face to face chat with Users");
+
+            request_vaccine_and_scans_layout.setVisibility(View.GONE);
+            vaccine_requests_and_cases_layout.setVisibility(View.VISIBLE);
             complain_.setVisibility(View.GONE);
             statistic.setVisibility(View.GONE);
             doc_reports.setVisibility(View.VISIBLE);
             is_available_layout.setVisibility(View.VISIBLE);
-        }else{
-            top_text.setTextSize(25);
-        }
+
             is_available_switch.setOnCheckedChangeListener((buttonView, isChecked) -> {
                 if(isChecked){
                     Doctor_is_Available();
@@ -127,6 +148,14 @@ public class MainActivity extends AppCompatActivity {
                     Doctor_is_UnAvailable();
                 }
             });
+
+        }else{
+            top_text.setTextSize(25);
+            //TODO: fetchAllScans();
+        }
+
+
+
 
         //swipe selections
 //        SwipeSelector swipeSelector = (SwipeSelector) findViewById(R.id.swipe_selector);
@@ -172,6 +201,14 @@ public class MainActivity extends AppCompatActivity {
             startActivity(new Intent(MainActivity.this, Reports.class)
         ));
 
+        request_vaccine_and_scans_layout.setOnClickListener(view -> {
+
+        });
+
+        vaccine_requests_and_cases_layout.setOnClickListener(view -> {
+
+        });
+
         findViewById(R.id.logout).setOnClickListener(v -> {
             final AlertDialog.Builder logout = new AlertDialog.Builder(MainActivity.this, R.style.Myalert);
             logout.setTitle("Signing Out?");
@@ -180,6 +217,7 @@ public class MainActivity extends AppCompatActivity {
                 if(isNetworkAvailable()){
                     FirebaseAuth.getInstance().signOut();
                     main_accessor.put("has_named", "false");
+                    main_accessor.clearStore();
 //                    main_accessor.put("first_open", false);
                     Doctor_is_UnAvailable();
                     startActivity(new Intent(MainActivity.this,Login_.class));

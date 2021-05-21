@@ -216,12 +216,11 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_marginLeft="40dp"
+            android:padding="10dp"
             android:layout_marginRight="40dp"
             android:visibility="gone"
-            android:background="@drawable/curved_buttom_doc"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
+            android:layout_marginTop="-30dp"
+            android:background="@drawable/curved_buttom_doc">
 
             <TextView
                 android:id="@+id/textView"
@@ -232,7 +231,7 @@
                 android:paddingLeft="30dp"
                 android:textColor="@color/colorAccent"
                 android:fontFamily="@font/quicksand_regular"
-                android:text="Check if you ready" />
+                android:text="Check if you are ready" />
 
             <android.support.v7.widget.SwitchCompat
                 android:layout_width="match_parent"
@@ -248,10 +247,11 @@
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/welcome_user"
                 android:layout_weight="3"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Hi, Jesse"
+                android:text="Hi, There"
                 android:textSize="30sp"
                 android:gravity="center_vertical"
                 android:fontFamily="@font/quicksand_bold"
@@ -270,7 +270,13 @@
 
         </LinearLayout>
 
-        <TextView
+        <LinearLayout
+            android:id="@+id/recent_scan_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Your Recent scan"
@@ -279,6 +285,8 @@
                 android:padding="10dp"/>
 
             <include layout="@layout/recent_scans_attachment"/>
+        </LinearLayout>
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -344,6 +352,7 @@
                     android:layout_gravity="center"/>
 
                 <TextView
+                    android:id="@+id/video_chat_text_one"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Video Chat Doctor"
@@ -353,6 +362,7 @@
                     android:fontFamily="@font/quicksand_regular"/>
 
                 <TextView
+                    android:id="@+id/video_chat_text_two"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Have a face to face chat with Doc."
@@ -445,6 +455,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/request_vaccine_and_scans_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
@@ -526,6 +537,92 @@
 
 
         </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/vaccine_requests_and_caseslayout"
+            android:layout_width="match_parent"
+            android:visibility="gone"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/vaccine_requests"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_margin="10dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="25dp"
+                android:paddingBottom="25dp"
+                android:background="@drawable/item_selector"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:scaleType="centerCrop"
+                    android:layout_gravity="center"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Vaccine requests"
+                    android:textStyle="bold"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@android:color/black"
+                    android:fontFamily="@font/quicksand_regular"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="View all vaccination requests"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/quicksand_regular"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/reports"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_margin="10dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="25dp"
+                android:paddingBottom="25dp"
+                android:background="@drawable/item_selector"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:src="@drawable/bell"
+                    android:scaleType="centerCrop"
+                    android:layout_gravity="center"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Reported Cases"
+                    android:textStyle="bold"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@android:color/black"
+                    android:fontFamily="@font/quicksand_regular"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="View all reported cases"
+                    android:fontFamily="@font/quicksand_regular"/>
+            </LinearLayout>
+
+
+        </LinearLayout>
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -610,16 +707,6 @@
             </LinearLayout>
 
         </LinearLayout>
-
-        <ImageView
-            android:layout_width="66dp"
-            android:layout_height="66dp"
-            android:id="@+id/reports"
-            android:src="@drawable/bell"
-            android:scaleType="centerCrop"
-            android:padding="10dp"
-            android:visibility="gone"
-            android:background="@drawable/curved_corners"/>
 
     </LinearLayout>
 

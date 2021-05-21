@@ -51,7 +51,7 @@
                         android:paddingBottom="0dp"
                         android:focusable="true"
                         android:focusableInTouchMode="true"
-                        android:src="@drawable/logo"/>
+                        android:src="@drawable/favicon"/>
 
                     <View
                         android:layout_width="match_parent"
@@ -179,6 +179,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:layout_marginBottom="5dp">
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="25dp"
@@ -205,6 +206,7 @@
                             android:background="@android:color/transparent"
                             android:hint="your name"/>
                     </LinearLayout>
+
 
                     <View
                         android:layout_width="match_parent"

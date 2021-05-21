@@ -38,7 +38,8 @@ public class Reports extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reports);
 
-        getSupportActionBar().setTitle("Covaid | CASES");
+        findViewById(R.id.goback).setOnClickListener(view -> finish());
+
         report_RecyclerView = findViewById(R.id.report_recyclerView);
         no_reports = findViewById(R.id.no_case);
 
