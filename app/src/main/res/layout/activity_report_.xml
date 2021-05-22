@@ -52,7 +52,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
-                android:layout_marginRight="10dp"
+                android:layout_marginRight="15dp"
                 android:orientation="horizontal">
 
                 <de.hdodenhof.circleimageview.CircleImageView
@@ -64,20 +64,18 @@
                     app:civ_border_color="@color/colorPrimaryDark"
                     app:civ_border_width="1dp"/>
 
-                <com.joooonho.SelectableRoundedImageView
+                <Space
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"/>
+
+                <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/whatsapp"
                     android:layout_width="43dp"
                     android:layout_height="43dp"
-                    android:padding="5dp"
                     android:scaleType="centerCrop"
                     android:src="@drawable/whatsapp"
-                    app:sriv_border_color="@color/colorPrimaryDark"
-                    app:sriv_border_width="2dip"
-                    app:sriv_left_bottom_corner_radius="100dip"
-                    app:sriv_left_top_corner_radius="100dip"
-                    app:sriv_oval="false"
-                    app:sriv_right_bottom_corner_radius="100dip"
-                    app:sriv_right_top_corner_radius="100dip" />
+                    app:civ_border_color="@color/colorPrimaryDark"
+                    app:civ_border_width="1dp"/>
 
             </LinearLayout>
 

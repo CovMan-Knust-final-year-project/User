@@ -43,9 +43,14 @@ mask, using sanitizer, checking temperature and so much more.).
 
 The repository contains android application files for the user system.  
 The user system constist of two parts 
-- User 
+- User
+- Doctor
 
-Functions
+
+## Functions
+
+- User
+
 1. View all scans and its related information
 2. View attendance and related information
 3. Report covid cases
