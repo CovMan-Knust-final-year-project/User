@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
     private SelectableRoundedImageView image;
     private LinearLayout is_available_layout, covid_info, complain_, chat_, statistic, about_app,
                         request_vaccine, scans, recent_scan_layout, request_vaccine_and_scans_layout,
-                        vaccine_requests_and_cases_layout;
+                        vaccine_requests_and_cases_layout, attendance_layout;
     private SwitchCompat is_available_switch;
     private LocationHelper locationHelper;
     private Location myLocation;
@@ -113,6 +113,7 @@ public class MainActivity extends AppCompatActivity {
         video_chat_text_two = findViewById(R.id.video_chat_text_two);
         covid_info          = findViewById(R.id.info);
         complain_           = findViewById(R.id.complain);
+        attendance_layout   = findViewById(R.id.attendance_layout);
         chat_               = findViewById(R.id.chat);
         statistic           = findViewById(R.id.statistic);
         about_app           = findViewById(R.id.about_app);
@@ -136,6 +137,7 @@ public class MainActivity extends AppCompatActivity {
 
             request_vaccine_and_scans_layout.setVisibility(View.GONE);
             vaccine_requests_and_cases_layout.setVisibility(View.VISIBLE);
+            attendance_layout.setVisibility(View.GONE);
             complain_.setVisibility(View.GONE);
             statistic.setVisibility(View.GONE);
             doc_reports.setVisibility(View.VISIBLE);
@@ -153,10 +155,6 @@ public class MainActivity extends AppCompatActivity {
             top_text.setTextSize(25);
             //TODO: fetchAllScans();
         }
-
-
-
-
         //swipe selections
 //        SwipeSelector swipeSelector = (SwipeSelector) findViewById(R.id.swipe_selector);
 //        swipeSelector.setItems(
@@ -195,6 +193,10 @@ public class MainActivity extends AppCompatActivity {
 
         about_app.setOnClickListener(v -> {
             startActivity(new Intent(MainActivity.this, App_description.class));
+        });
+
+        findViewById(R.id.attendance).setOnClickListener(view -> {
+            startActivity(new Intent(MainActivity.this, Attendance.class));
         });
 
         findViewById(R.id.reports).setOnClickListener(v ->
