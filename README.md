@@ -24,7 +24,7 @@ Lack of an autonomous system to emphasize the obedience of COVID-19 protocols ha
 the need for human resources to be used for the monitoring of the said protocols (wearing of nose
 mask, using sanitizer, checking temperature and so much more.).
 
-## :camera_flash: Screenshots-->
+## :camera_flash: Screenshots
 
 <!-- You can add more screenshots here if you like -->
 <img src="screenshots/1.png" width="30%">&emsp;<img src="screenshots/2.png" width="30%">
@@ -36,9 +36,7 @@ mask, using sanitizer, checking temperature and so much more.).
 
 - Doctor
 
-<img src="screenshots/12.png" width="30%">
-<img src="screenshots/13.png" width="30%">&emsp;<img src="screenshots/2.png" width="30%">
-
+<img src="screenshots/12.png" width="30%">&emsp;<img src="screenshots/13.png" width="30%">
 
 
 ## :file_folder: Repo Walkthrough
