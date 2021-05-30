@@ -10,12 +10,24 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.NetworkResponse;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.HttpHeaderParser;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseException;
@@ -33,7 +45,16 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.hbb20.CountryCodePicker;
 import com.tekdevisal.covman.Helpers.Accessories;
+import com.tekdevisal.covman.Helpers.Functions;
+import com.tekdevisal.covman.Helpers.Urls;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.UnsupportedEncodingException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 public class Login_ extends AppCompatActivity {
@@ -54,6 +75,8 @@ public class Login_ extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private String mVerificationId;
     private PhoneAuthProvider.ForceResendingToken mResendingToken;
+
+    private String responseCode = "";
 
 
     @Override
@@ -81,18 +104,13 @@ public class Login_ extends AppCompatActivity {
             doctor_.setBackground(getResources().getDrawable(R.drawable.curved_corner_white));
             user_.setBackground(getResources().getDrawable(R.drawable.curved_corner_red));
             which_user = "normal_user";
-            snackbar = Snackbar.make(findViewById(android.R.id.content),
-                    "Login as User", Snackbar.LENGTH_LONG);
-            snackbar.setActionTextColor(getResources().getColor(R.color.colorAccent));
-            snackbar.show();
+            showSnackBar("Login as User");
         });
         doctor_.setOnClickListener(v -> {
             doctor_.setBackground(getResources().getDrawable(R.drawable.curved_corner_red));
             user_.setBackground(getResources().getDrawable(R.drawable.curved_corner_white));
             which_user = "doctor";
-            snackbar = Snackbar.make(findViewById(android.R.id.content),
-                    "Login as Doctor", Snackbar.LENGTH_LONG);
-            snackbar.show();
+            showSnackBar("Login as Doctor");
         });
 
         continueNextButton.setOnClickListener(v -> {
@@ -101,45 +119,33 @@ public class Login_ extends AppCompatActivity {
                     String verificationcode = codeText.getText().toString().trim();
 
                     if(verificationcode.equals("")){
-                        snackbar = Snackbar.make(findViewById(android.R.id.content),
-                                "Code required", Snackbar.LENGTH_LONG);
-                        snackbar.show();
+                        showSnackBar("Code required");
                     }else{
-                        loadingbar.setTitle("Code Verification");
-                        loadingbar.setMessage("Please Wait. We are verifying your phone number");
-                        loadingbar.setCanceledOnTouchOutside(false);
-                        loadingbar.show();
-
+                        showProgressBar("Code Verification", "Please Wait. We are verifying your phone number");
                         //TODO: check to see if the user has been registered by the admin.
 
                         PhoneAuthCredential credential = PhoneAuthProvider.getCredential(mVerificationId, verificationcode);
                         signInWithPhoneAuthCredential(credential);
                     }
                 }else{
+//                    phonetext.getText().toString().trim();
                     phoneNumber = ccp.getFullNumberWithPlus();
                     if(!phoneNumber.equals("")){
                         if(!which_user.equals("")){
-                            loadingbar.setTitle("Sending code");
-                            loadingbar.setMessage("Please Wait. We are sending code to phone number");
-                            loadingbar.setCanceledOnTouchOutside(false);
-                            loadingbar.show();
-                            phoneNumber.replaceFirst("^0+(?!$)","");
-                            PhoneAuthProvider.getInstance().verifyPhoneNumber(
-                                    phoneNumber,        // Phone number to verify
-                                    60,                 // Timeout duration
-                                    TimeUnit.SECONDS,   // Unit of timeout
-                                    this,               // Activity (for callback binding)
-                                    callbacks);
+
+                            //TODO: check to see if the user is in the database before sending the code.
+                            if(which_user.equals("normal_user")){
+                                CheckIfUserIsPresent(phonetext.getText().toString().trim());
+                            }
+                            else{
+                                sendSMsCode();
+                            }
                         }else{
-                            snackbar = Snackbar.make(findViewById(android.R.id.content),
-                                    "Choose user type(eg. user,doctor)", Snackbar.LENGTH_LONG);
-                            snackbar.show();
+                            showSnackBar("Choose user type(eg. user,doctor)");
                         }
                             // OnVerificationStateChangedCallbacks
                     }else{
-                        snackbar = Snackbar.make(findViewById(android.R.id.content),
-                                "Number Invalid", Snackbar.LENGTH_LONG);
-                        snackbar.show();
+                       showSnackBar("Number Invalid");
                     }
                 }
 //                }else{
@@ -160,9 +166,7 @@ public class Login_ extends AppCompatActivity {
             public void onVerificationFailed(FirebaseException e) {
 
                 loadingbar.dismiss();
-                snackbar = Snackbar.make(findViewById(android.R.id.content),
-                        "Number Invalid", Snackbar.LENGTH_LONG);
-                snackbar.show();
+                showSnackBar("Code could not send");
                 layout.setVisibility(View.VISIBLE);
 
                 continueNextButton.setText("Continue");
@@ -173,9 +177,7 @@ public class Login_ extends AppCompatActivity {
             public void onCodeAutoRetrievalTimeOut(String s) {
                 super.onCodeAutoRetrievalTimeOut(s);
                 loadingbar.dismiss();
-                snackbar = Snackbar.make(findViewById(android.R.id.content),
-                        "Something went wrong. Try again later", Snackbar.LENGTH_LONG);
-                snackbar.show();
+                showSnackBar("Something went wrong. Try again later");
             }
 
             @Override
@@ -190,11 +192,90 @@ public class Login_ extends AppCompatActivity {
                 continueNextButton.setText("Submit");
                 codeText.setVisibility(View.VISIBLE);
                 loadingbar.dismiss();
-                snackbar = Snackbar.make(findViewById(android.R.id.content),
-                        "Code has been sent.", Snackbar.LENGTH_LONG);
-                snackbar.show();
+                showSnackBar("Code has been sent.");
             }
         };
+    }
+
+    private void CheckIfUserIsPresent(String phoneNumber) {
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        StringRequest postRequest = new StringRequest(Request.Method.POST, new Urls().userAvailability_url,
+                response -> {
+                    // response
+                    Log.d("Response", response);
+                    if(responseCode.equals("200")){
+                        FetchDataFromJson(response);
+                    }else{
+                        snackbar = Snackbar.make(findViewById(android.R.id.content),
+                                "Something went wrong.", Snackbar.LENGTH_LONG);
+                        snackbar.show();
+                        return;
+                    }
+                },
+                error -> {
+                    // error
+                    Log.d("Error.Response", error.toString());
+                    return;
+                }
+        ) {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String>  params = new HashMap<String, String>();
+                params.put("phone_number", phoneNumber);
+                return params;
+            }
+
+            @Override
+            protected Response<String> parseNetworkResponse(NetworkResponse response) {
+                 responseCode = String.valueOf(response.statusCode);
+                return super.parseNetworkResponse(response);
+            }
+        };
+        requestQueue.add(postRequest);
+    }
+
+    private void FetchDataFromJson(String response) {
+        try {
+            //getting the whole json object from the response
+            JSONObject obj = new JSONObject(response);
+
+            //we have the array named results inside the object
+            //so here we are getting that json array
+            JSONArray array = obj.getJSONArray("Server response");
+
+            //now looping through all the elements of the json array
+            for (int i = 0; i < array.length(); i++) {
+                //getting the json object of the particular index inside the array
+                JSONObject object = array.getJSONObject(i);
+                if(object.getString("message").equals("user present")){
+                    login_accessor.put("raw_phone_number", phonetext.getText().toString().trim());
+                    sendSMsCode();
+                }else{
+                    new Functions(this).showAlertDialogueWithOK("You are not eligible to use this service");
+                    return;
+                }
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void sendSMsCode(){
+        //replace first 0 zero with a white space.
+        phoneNumber.replaceFirst("^0+(?!$)","");
+
+        //show progress bar
+        showProgressBar("Sending code","Please Wait. We are sending code to phone number");
+
+        //sending the sms code
+        PhoneAuthProvider.getInstance().verifyPhoneNumber(
+                phoneNumber,        // Phone number to verify
+                60,                 // Timeout duration
+                TimeUnit.SECONDS,   // Unit of timeout
+                this,               // Activity (for callback binding)
+                callbacks);
+        //sending sms code ends here
     }
 
     private void signInWithPhoneAuthCredential(PhoneAuthCredential credential) {
@@ -301,5 +382,18 @@ public class Login_ extends AppCompatActivity {
         intent.addCategory(Intent.CATEGORY_HOME);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
+    }
+
+    private void showProgressBar(String title, String message){
+        loadingbar.setTitle(title);
+        loadingbar.setMessage(message);
+        loadingbar.setCanceledOnTouchOutside(false);
+        loadingbar.show();
+    }
+
+    private void showSnackBar(String message){
+        snackbar = Snackbar.make(findViewById(android.R.id.content),
+                message, Snackbar.LENGTH_LONG);
+        snackbar.show();
     }
 }
