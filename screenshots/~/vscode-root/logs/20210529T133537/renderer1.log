@@ -1,0 +1,5 @@
+[2021-05-29 13:55:34.655] [renderer1] [error] net::ERR_ADDRESS_UNREACHABLE: Error: net::ERR_ADDRESS_UNREACHABLE
+    at SimpleURLLoaderWrapper.<anonymous> (electron/js2c/browser_init.js:109:7029)
+    at SimpleURLLoaderWrapper.emit (events.js:315:20)
+[2021-05-29 13:59:05.785] [renderer1] [error] read ENETUNREACH: Error: read ENETUNREACH
+	at TLSWrap.onStreamRead (internal/stream_base_commons.js:209:20)

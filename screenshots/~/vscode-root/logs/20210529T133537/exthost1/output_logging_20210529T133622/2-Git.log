@@ -1,0 +1,197 @@
+Looking for git in: git
+Using git 2.25.1 from git
+> git rev-parse --git-dir
+Open repository: /opt/lampp/htdocs/CovMan
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track) refs/heads/working_branch refs/remotes/working_branch
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git check-ignore -v -z --stdin
+> git show --textconv :index.php
+> git ls-files --stage -- /opt/lampp/htdocs/CovMan/index.php
+> git cat-file -s f84751282586eef931aee1c8b909199a20f5ada8
+> git check-ignore -v -z --stdin
+> git check-ignore -v -z --stdin
+> git check-ignore -v -z --stdin
+> git show --textconv :helpers/counters.php
+> git ls-files --stage -- /opt/lampp/htdocs/CovMan/helpers/counters.php
+> git cat-file -s a5802c61bfc8aa9895032edd0f9ce0063093477c
+> git show --textconv :helpers/functions.php
+> git ls-files --stage -- /opt/lampp/htdocs/CovMan/helpers/functions.php
+> git cat-file -s 1746d7600563699643ecaa2d62bbf1f6844feadd
+> git show --textconv :helpers/sms.php
+> git ls-files --stage -- /opt/lampp/htdocs/CovMan/helpers/sms.php
+> git cat-file -s bf2afbf3e18e267732b1769b399fa7fc6aaaa90a
+> git show --textconv :index.php
+> git ls-files --stage -- /opt/lampp/htdocs/CovMan/index.php
+> git cat-file -s f84751282586eef931aee1c8b909199a20f5ada8
+> git check-ignore -v -z --stdin
+> git show --textconv :database/config.php
+> git ls-files --stage -- /opt/lampp/htdocs/CovMan/database/config.php
+> git cat-file -s e8bf759d2f5c211cb30813037636c3aaef64d8ab
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track) refs/heads/working_branch refs/remotes/working_branch
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git show --textconv :database/register_login/login.php
+> git ls-files --stage -- /opt/lampp/htdocs/CovMan/database/register_login/login.php
+> git cat-file -s cb8e797bab175fa712fb96af6dfed52d17dc73fa
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track) refs/heads/working_branch refs/remotes/working_branch
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git show --textconv :database/config.php
+> git ls-files --stage -- /opt/lampp/htdocs/CovMan/database/config.php
+> git cat-file -s e8bf759d2f5c211cb30813037636c3aaef64d8ab
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track) refs/heads/working_branch refs/remotes/working_branch
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git show --textconv :database/register_login/login.php
+> git ls-files --stage -- /opt/lampp/htdocs/CovMan/database/register_login/login.php
+> git cat-file -s cb8e797bab175fa712fb96af6dfed52d17dc73fa
+> git show --textconv :index.php
+> git ls-files --stage -- /opt/lampp/htdocs/CovMan/index.php
+> git cat-file -s f84751282586eef931aee1c8b909199a20f5ada8
+> git show --textconv :database/register_login/login.php
+> git ls-files --stage -- /opt/lampp/htdocs/CovMan/database/register_login/login.php
+> git cat-file -s cb8e797bab175fa712fb96af6dfed52d17dc73fa
+> git show --textconv :index.php
+> git ls-files --stage -- /opt/lampp/htdocs/CovMan/index.php
+> git cat-file -s f84751282586eef931aee1c8b909199a20f5ada8
+> git show --textconv :database/register_login/login.php
+> git ls-files --stage -- /opt/lampp/htdocs/CovMan/database/register_login/login.php
+> git cat-file -s cb8e797bab175fa712fb96af6dfed52d17dc73fa
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track) refs/heads/working_branch refs/remotes/working_branch
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git show --textconv :database/config.php
+> git ls-files --stage -- /opt/lampp/htdocs/CovMan/database/config.php
+> git cat-file -s e8bf759d2f5c211cb30813037636c3aaef64d8ab
+> git show --textconv :database/register_login/login.php
+> git ls-files --stage -- /opt/lampp/htdocs/CovMan/database/register_login/login.php
+> git cat-file -s cb8e797bab175fa712fb96af6dfed52d17dc73fa
+> git log --format=%H%n%aN%n%aE%n%at%n%ct%n%P%n%B -z -n21 -- /opt/lampp/htdocs/CovMan/database/register_login/login.php
+> git show --textconv :helpers/functions.php
+> git ls-files --stage -- /opt/lampp/htdocs/CovMan/helpers/functions.php
+> git cat-file -s 1746d7600563699643ecaa2d62bbf1f6844feadd
+> git show --textconv :database/register_login/login.php
+> git ls-files --stage -- /opt/lampp/htdocs/CovMan/database/register_login/login.php
+> git cat-file -s cb8e797bab175fa712fb96af6dfed52d17dc73fa
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track) refs/heads/working_branch refs/remotes/working_branch
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git show --textconv :helpers/functions.php
+> git ls-files --stage -- /opt/lampp/htdocs/CovMan/helpers/functions.php
+> git cat-file -s 1746d7600563699643ecaa2d62bbf1f6844feadd
+> git show --textconv :dashboard.php
+> git ls-files --stage -- /opt/lampp/htdocs/CovMan/dashboard.php
+> git cat-file -s ea05f1cb6d60ede3596ec0a4d4108166bb704b77
+> git check-ignore -v -z --stdin
+> git show --textconv :partials/header.php
+> git ls-files --stage -- /opt/lampp/htdocs/CovMan/partials/header.php
+> git cat-file -s 7b39cc80ab99bd9e1379e03203b132a76f44af45
+> git show --textconv :dashboard.php
+> git ls-files --stage -- /opt/lampp/htdocs/CovMan/dashboard.php
+> git cat-file -s ea05f1cb6d60ede3596ec0a4d4108166bb704b77
+> git show --textconv :partials/header.php
+> git ls-files --stage -- /opt/lampp/htdocs/CovMan/partials/header.php
+> git cat-file -s 7b39cc80ab99bd9e1379e03203b132a76f44af45
+> git show --textconv :dashboard.php
+> git ls-files --stage -- /opt/lampp/htdocs/CovMan/dashboard.php
+> git cat-file -s ea05f1cb6d60ede3596ec0a4d4108166bb704b77
+> git show --textconv :database/register_login/login.php
+> git ls-files --stage -- /opt/lampp/htdocs/CovMan/database/register_login/login.php
+> git cat-file -s cb8e797bab175fa712fb96af6dfed52d17dc73fa
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track) refs/heads/working_branch refs/remotes/working_branch
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git show --textconv :dashboard.php
+> git ls-files --stage -- /opt/lampp/htdocs/CovMan/dashboard.php
+> git cat-file -s ea05f1cb6d60ede3596ec0a4d4108166bb704b77
+> git show --textconv :helpers/counters.php
+> git ls-files --stage -- /opt/lampp/htdocs/CovMan/helpers/counters.php
+> git cat-file -s a5802c61bfc8aa9895032edd0f9ce0063093477c
+> git show --textconv :database/config.php
+> git ls-files --stage -- /opt/lampp/htdocs/CovMan/database/config.php
+> git cat-file -s e8bf759d2f5c211cb30813037636c3aaef64d8ab
+> git show --textconv :dashboard.php
+> git ls-files --stage -- /opt/lampp/htdocs/CovMan/dashboard.php
+> git cat-file -s ea05f1cb6d60ede3596ec0a4d4108166bb704b77
+> git show --textconv :helpers/counters.php
+> git ls-files --stage -- /opt/lampp/htdocs/CovMan/helpers/counters.php
+> git cat-file -s a5802c61bfc8aa9895032edd0f9ce0063093477c
+> git show --textconv :dashboard.php
+> git ls-files --stage -- /opt/lampp/htdocs/CovMan/dashboard.php
+> git cat-file -s ea05f1cb6d60ede3596ec0a4d4108166bb704b77
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track) refs/heads/working_branch refs/remotes/working_branch
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track) refs/heads/working_branch refs/remotes/working_branch
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track) refs/heads/working_branch refs/remotes/working_branch
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track) refs/heads/working_branch refs/remotes/working_branch
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track) refs/heads/working_branch refs/remotes/working_branch
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track) refs/heads/working_branch refs/remotes/working_branch
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track) refs/heads/working_branch refs/remotes/working_branch
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track) refs/heads/working_branch refs/remotes/working_branch
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track) refs/heads/working_branch refs/remotes/working_branch
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
