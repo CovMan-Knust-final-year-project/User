@@ -10,4 +10,6 @@ public class Urls {
 
     public String editUserDetails_url =  initial_url + "Mobileapp/editUserDetails.php";
 
+    public String fetchAttendance_url =  initial_url + "Mobileapp/fetchAttendance.php";
+
 }

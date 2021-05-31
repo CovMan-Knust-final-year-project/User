@@ -47,8 +47,19 @@
             android:padding="10dp"
             android:orientation="vertical">
 
-            <include layout="@layout/attendance_attachment"/>
-            <include layout="@layout/attendance_attachment"/>
+            <ProgressBar
+                android:id="@+id/loading"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:layout_gravity="center"/>
+
+            <android.support.v7.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/recyclerView"
+                android:layout_gravity="center"
+                android:padding="10dp"/>
         </LinearLayout>
     </ScrollView>
 
