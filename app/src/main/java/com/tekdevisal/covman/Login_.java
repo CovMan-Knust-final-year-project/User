@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -135,7 +136,7 @@ public class Login_ extends AppCompatActivity {
 
                             //TODO: check to see if the user is in the database before sending the code.
                             if(which_user.equals("normal_user")){
-                                CheckIfUserIsPresent(phonetext.getText().toString().trim());
+                                new CheckIfUserIsPresent(phonetext.getText().toString().trim()).execute();
                             }
                             else{
                                 sendSMsCode();
@@ -197,67 +198,62 @@ public class Login_ extends AppCompatActivity {
         };
     }
 
-    private void CheckIfUserIsPresent(String phoneNumber) {
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        StringRequest postRequest = new StringRequest(Request.Method.POST, new Urls().userAvailability_url,
-                response -> {
-                    // response
-                    Log.d("Response", response);
-                    if(responseCode.equals("200")){
-                        FetchDataFromJson(response);
-                    }else{
-                        snackbar = Snackbar.make(findViewById(android.R.id.content),
-                                "Something went wrong.", Snackbar.LENGTH_LONG);
-                        snackbar.show();
+    private class CheckIfUserIsPresent extends AsyncTask<String, String, String> {
+        String phoneNumber = "";
+
+        public CheckIfUserIsPresent(String phoneNumber) {
+            this.phoneNumber = phoneNumber;
+        }
+
+        @Override
+        protected String doInBackground(String... strings) {
+            RequestQueue requestQueue = Volley.newRequestQueue(Login_.this);
+            StringRequest postRequest = new StringRequest(Request.Method.POST, new Urls().userAvailability_url,
+                    response -> {
+                        // response
+                        Log.d("Response", response);
+                        if(responseCode.equals("200")){
+                            JSONObject object = new Functions(Login_.this).FetchDataFromJson(response);
+                            try {
+                                if(object.getString("message").equals("user present")){
+                                    login_accessor.put("raw_phone_number", phonetext.getText().toString().trim());
+                                    sendSMsCode();
+                                }else{
+                                    new Functions(Login_.this).showAlertDialogueWithOK("You are not eligible to use this service");
+                                    return;
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }else{
+                            snackbar = Snackbar.make(findViewById(android.R.id.content),
+                                    "Something went wrong.", Snackbar.LENGTH_LONG);
+                            snackbar.show();
+                            return;
+                        }
+                    },
+                    error -> {
+                        // error
+                        Log.d("Error.Response", error.toString());
                         return;
                     }
-                },
-                error -> {
-                    // error
-                    Log.d("Error.Response", error.toString());
-                    return;
+            ) {
+                @Override
+                protected Map<String, String> getParams()
+                {
+                    Map<String, String>  params = new HashMap<String, String>();
+                    params.put("phone_number", phoneNumber);
+                    return params;
                 }
-        ) {
-            @Override
-            protected Map<String, String> getParams()
-            {
-                Map<String, String>  params = new HashMap<String, String>();
-                params.put("phone_number", phoneNumber);
-                return params;
-            }
 
-            @Override
-            protected Response<String> parseNetworkResponse(NetworkResponse response) {
-                 responseCode = String.valueOf(response.statusCode);
-                return super.parseNetworkResponse(response);
-            }
-        };
-        requestQueue.add(postRequest);
-    }
-
-    private void FetchDataFromJson(String response) {
-        try {
-            //getting the whole json object from the response
-            JSONObject obj = new JSONObject(response);
-
-            //we have the array named results inside the object
-            //so here we are getting that json array
-            JSONArray array = obj.getJSONArray("Server response");
-
-            //now looping through all the elements of the json array
-            for (int i = 0; i < array.length(); i++) {
-                //getting the json object of the particular index inside the array
-                JSONObject object = array.getJSONObject(i);
-                if(object.getString("message").equals("user present")){
-                    login_accessor.put("raw_phone_number", phonetext.getText().toString().trim());
-                    sendSMsCode();
-                }else{
-                    new Functions(this).showAlertDialogueWithOK("You are not eligible to use this service");
-                    return;
+                @Override
+                protected Response<String> parseNetworkResponse(NetworkResponse response) {
+                    responseCode = String.valueOf(response.statusCode);
+                    return super.parseNetworkResponse(response);
                 }
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
+            };
+            requestQueue.add(postRequest);
+            return null;
         }
     }
 
@@ -367,13 +363,6 @@ public class Login_ extends AppCompatActivity {
 //            DatabaseReference user_ref = FirebaseDatabase.getInstance().getReference("users");
 //            user_ref.child(currentUser.getUid()).child("registered").setValue("yes");
 //    }
-
-    private boolean isNetworkAvailable() {
-        ConnectivityManager connectivityManager
-                = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
-        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
-    }
 
     @Override
     public void onBackPressed() {
