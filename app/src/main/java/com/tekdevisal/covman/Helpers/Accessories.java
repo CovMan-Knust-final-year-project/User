@@ -82,6 +82,12 @@ public class Accessories
         context.startActivity(finali);
     }
 
+    public void ShowProgressDialogue(ProgressDialog progressDialog, String title, String message){
+        progressDialog.setTitle(title);
+        progressDialog.setMessage(message);
+        progressDialog.setCanceledOnTouchOutside(false);
+        progressDialog.show();
+    }
     //Method to increaseListHeight Dynamically
     public static void setListHeight(ListView listView) {
         ListAdapter listAdapter = listView.getAdapter();
@@ -343,6 +349,10 @@ public class Accessories
                 = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
         return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+    }
+
+    public void showToast(String message){
+        Toast.makeText(context, message, Toast.LENGTH_LONG).show();
     }
 
     private void showDialog(final String msg, final Context context, final String permission,

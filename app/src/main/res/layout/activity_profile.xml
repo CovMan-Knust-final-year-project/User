@@ -48,6 +48,7 @@
             android:orientation="vertical">
 
             <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profile_image"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:src="@drawable/profile_image"
@@ -96,12 +97,15 @@
                 android:fontFamily="@font/quicksand_medium"
                 android:textSize="15sp"/>
 
-            <EditText
+            <TextView
                 android:id              =   "@+id/dob"
                 android:layout_width    =   "match_parent"
                 android:layout_height   =   "60dp"
                 android:background      =   "@android:drawable/editbox_background_normal"
                 android:hint            =   "eg. 2021-01-01"
+                android:textColor       =   "@android:color/black"
+                android:gravity         =   "center_vertical"
+                android:textSize        =   "15sp"
                 android:padding         =   "10dp"
                 android:fontFamily      =   "@font/quicksand_medium"/>
 
@@ -120,6 +124,8 @@
                 android:background      =   "@android:drawable/editbox_background_normal"
                 android:hint            =   "eg. (026) 897-7129"
                 android:padding         =   "10dp"
+                android:textColor       =   "@android:color/black"
+                android:textSize        =   "15sp"
                 android:fontFamily      =   "@font/quicksand_medium"/>
 
             <TextView
