@@ -48,8 +48,29 @@
             android:orientation="vertical"
             android:layout_margin="10dp">
 
-            <include layout="@layout/recent_scans_attachment"/>
-            <include layout="@layout/recent_scans_attachment"/>
+            <ProgressBar
+                android:id="@+id/loading"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:layout_gravity="center"/>
+
+            <TextView
+                android:id="@+id/no_scans"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="No Scans Yet"
+                android:fontFamily="@font/quicksand_medium"
+                android:textSize="20sp"
+                android:textColor="@android:color/black"
+                android:gravity="center"/>
+
+            <android.support.v7.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/recyclerView"
+                android:layout_gravity="center"
+                android:padding="10dp"/>
         </LinearLayout>
     </ScrollView>
 

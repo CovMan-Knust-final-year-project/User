@@ -54,6 +54,16 @@
                 android:layout_height="25dp"
                 android:layout_gravity="center"/>
 
+            <TextView
+                android:id="@+id/no_attendance"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="No Attendance Marked Yet"
+                android:fontFamily="@font/quicksand_medium"
+                android:textSize="20sp"
+                android:textColor="@android:color/black"
+                android:gravity="center"/>
+
             <android.support.v7.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
