@@ -17,6 +17,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Bitmap;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.provider.MediaStore;
@@ -24,6 +25,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.text.format.DateUtils;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
@@ -50,9 +52,12 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
+import java.util.TimeZone;
 
 public class Accessories
         implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener{
@@ -370,6 +375,35 @@ public class Accessories
         });
         AlertDialog alert = alertBuilder.create();
         alert.show();
+    }
+
+    //save the date and time aka timestamp
+    public String timeStamp(){
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US);
+        sdf.setTimeZone(TimeZone.getTimeZone("GMT"));
+        return sdf.format(new Date());
+    }
+
+    public void openDialer(View v, String call_number){
+        Intent intent = new Intent(Intent.ACTION_DIAL);
+        intent.setData(Uri.parse("tel:" + call_number));
+        v.getContext().startActivity(intent);
+    }
+
+    public String OneMinuteAgoTimeFormat(String timestamp){
+        long now = System.currentTimeMillis();
+
+        String timeStr = timestamp;
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+        Date dateObj= null;
+        try {
+            dateObj = sdf.parse(timeStr);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return  String.valueOf(DateUtils.getRelativeTimeSpanString(dateObj.getTime(), now, DateUtils.MINUTE_IN_MILLIS));
+
     }
 
     public class ServerRequest extends AsyncTask<Void, Void, String> {

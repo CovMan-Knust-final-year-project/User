@@ -243,13 +243,17 @@ public class MainActivity extends AppCompatActivity {
             startActivity(new Intent(MainActivity.this, Reports.class)
         ));
 
-        request_vaccine_and_scans_layout.setOnClickListener(view -> {
-
+        findViewById(R.id.vaccine_requests).setOnClickListener(view -> {
+            startActivity(new Intent(MainActivity.this, VaccinesRequestedFor.class));
         });
 
-        vaccine_requests_and_cases_layout.setOnClickListener(view -> {
-
-        });
+//        request_vaccine_and_scans_layout.setOnClickListener(view -> {
+//
+//        });
+//
+//        vaccine_requests_and_cases_layout.setOnClickListener(view -> {
+//
+//        });
 
         findViewById(R.id.logout).setOnClickListener(v -> {
             final AlertDialog.Builder logout = new AlertDialog.Builder(MainActivity.this, R.style.Myalert);

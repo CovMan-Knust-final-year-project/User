@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/colorAccent"
-    tools:context=".Reports">
+    tools:context=".VaccinesRequestedFor">
 
     <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"
@@ -28,9 +28,9 @@
             <TextView
                 android:layout_width    =   "match_parent"
                 android:layout_height   =   "wrap_content"
-                android:text            =   "Reported cases"
+                android:text            =   "Requested Vaccines"
                 android:layout_weight   =   "1"
-                android:textSize        =   "35sp"
+                android:textSize        =   "30sp"
                 android:paddingTop      =   "30dp"
                 android:paddingBottom   =   "30dp"
                 android:fontFamily      =   "@font/quicksand_semibold"
@@ -38,50 +38,40 @@
         </LinearLayout>
     </android.support.v7.widget.Toolbar>
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content">
 
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Unattended Cases"
-            android:layout_margin="20dp"
-            android:gravity="center"
-            android:textSize="18sp"
-            android:textColor="@color/text_color"
-            android:fontFamily="@font/quicksand_medium"/>
+            android:orientation="vertical"
+            android:layout_margin="10dp">
 
             <ProgressBar
+                android:id="@+id/loading"
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="25dp"
-                android:visibility="gone"
-                android:id="@+id/loading"/>
+                android:layout_gravity="center"/>
 
             <TextView
-                android:id="@+id/no_case"
+                android:id="@+id/no_requests"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="No case"
-                android:textColor="@android:color/black"
-                android:layout_gravity="center"
-                android:gravity="center"
+                android:text="No Requests Yet"
                 android:fontFamily="@font/quicksand_medium"
-                android:textSize="15sp"/>
+                android:textSize="20sp"
+                android:textColor="@android:color/black"
+                android:gravity="center"/>
 
             <android.support.v7.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layoutManager="android.support.v7.widget.LinearLayoutManager"
-                android:id="@+id/report_recyclerView"
+                android:id="@+id/recyclerView"
                 android:layout_gravity="center"
-                android:padding="15dp"/>
-
-
-    </LinearLayout>
-
-
-
+                android:padding="10dp"/>
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

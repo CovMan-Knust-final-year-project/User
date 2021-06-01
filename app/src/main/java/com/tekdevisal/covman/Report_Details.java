@@ -43,7 +43,7 @@ public class Report_Details extends AppCompatActivity implements OnMapReadyCallb
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_report__details);
 
-        getSupportActionBar().setTitle("Covaid | Report Details");
+        getSupportActionBar().setTitle("CovMan | Report Details");
 
         patient_name = findViewById(R.id.patient_name);
         patient_number = findViewById(R.id.patient_phone);
@@ -127,9 +127,6 @@ public class Report_Details extends AppCompatActivity implements OnMapReadyCallb
                 .build();                   // Creates a CameraPosition from the builder
         mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
         mMap.addMarker(new MarkerOptions().position(user_location).title("Patient"));
-
-
-
     }
 
     public void RemoveReport(String the_patient_id,String the_report_id){
