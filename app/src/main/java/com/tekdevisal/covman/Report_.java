@@ -169,6 +169,7 @@ public class Report_ extends AppCompatActivity implements GoogleApiClient.Connec
            }else {
             snackbar = Snackbar.make(findViewById(android.R.id.content),
                     "Location not found", Snackbar.LENGTH_LONG);
-            snackbar.show();        }
+            snackbar.show();
+        }
     }
 }

@@ -37,23 +37,146 @@
         </LinearLayout>
     </android.support.v7.widget.Toolbar>
 
-    <ScrollView
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_margin="10dp">
+            android:layout_marginBottom="60dp"
+            android:layout_height="wrap_content">
 
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Need a vaccine delivered to your home? Make an order and let us help"
-                android:fontFamily="@font/quicksand_medium"
-                android:textSize="15sp"/>
-        </LinearLayout>
-    </ScrollView>
+                android:orientation="vertical"
+                android:layout_margin="10dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Benefits of the Vaccine"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/quicksand_bold"
+                    android:textSize="20sp"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Studies have shown that taking the vaccine, reduces a person's risk of getting COVID-19. They do so by preparing the body's natural defenses - the immune system - to recognize and fight off the virus. "
+                    android:fontFamily="@font/quicksand_medium"
+                    android:textSize="15sp"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Are COVID-19 vaccines safe?"
+                    android:layout_marginTop="15dp"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/quicksand_bold"
+                    android:textSize="20sp"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Vaccines go through rigorous, multi-stage process, including tens and thousands of people. At the moment, vaccines available for COVID-19 have efficacy of between 60-94% and are effective in preventing the disease."
+                    android:fontFamily="@font/quicksand_medium"
+                    android:textSize="15sp"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Examples of Vaccines"
+                    android:layout_marginTop="15dp"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/quicksand_bold"
+                    android:textSize="20sp"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="1.Sputnik V Vaccine from Generium Joint Stock Company, Russia\n2.CovidShield from the Serum Institute of India.\n3.AstraZeneca/Oxford vaccine\nJohnson and Johnson"
+                    android:fontFamily="@font/quicksand_medium"
+                    android:textSize="15sp"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Are the Vaccines approved in Ghana?"
+                    android:layout_marginTop="15dp"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/quicksand_bold"
+                    android:textSize="20sp"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Yes. The food and Drugs Authority(FDA) has given Emergency Use Authorization to two of the vaccines 1 and 2 mentioned above."
+                    android:fontFamily="@font/quicksand_medium"
+                    android:textSize="15sp"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Common Side Effects of the Vaccine"
+                    android:layout_marginTop="15dp"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/quicksand_bold"
+                    android:textSize="20sp"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="1.Pain at site of injection\n2.Tiredness\n3.Headache\n4.Muscle and Joint aches\n5.Nausea and Vomitting\n6.Fever and chills"
+                    android:fontFamily="@font/quicksand_medium"
+                    android:textSize="15sp"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Will COVID-19 vaccines provide long term protection?"
+                    android:layout_marginTop="15dp"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/quicksand_bold"
+                    android:textSize="20sp"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="It would provide protection for at least a year. If not longer. Early data from clinical trials indicate that some vaccines will require two doses."
+                    android:fontFamily="@font/quicksand_medium"
+                    android:textSize="15sp"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Will i need to take other precautions after taking the vaccine?"
+                    android:layout_marginTop="15dp"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/quicksand_bold"
+                    android:textSize="20sp"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Taking the vaccine does not prevent you from contracting the virus. It only strenthens your immune system such that when you do contract the virus, it would not be as severe. Wearing of nose masks, social distancing, use of sanitizer etc are greatly encouraged."
+                    android:fontFamily="@font/quicksand_medium"
+                    android:layout_marginBottom="20dp"
+                    android:textSize="15sp"/>
+            </LinearLayout>
+        </ScrollView>
+
+        <Button
+            android:id="@+id/request_vaccine"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:text="Request For Vaccine"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:fontFamily="@font/quicksand_bold"
+            android:background="@color/colorPrimary"
+            android:layout_gravity="bottom"/>
+    </FrameLayout>
+
 
 </LinearLayout>
