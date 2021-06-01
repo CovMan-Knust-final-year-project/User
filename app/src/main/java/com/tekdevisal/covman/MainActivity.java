@@ -5,30 +5,51 @@ import android.content.Intent;
 import android.location.Location;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SwitchCompat;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.android.volley.NetworkResponse;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.joooonho.SelectableRoundedImageView;
 import com.roughike.swipeselector.SwipeItem;
 import com.roughike.swipeselector.SwipeSelector;
+import com.tekdevisal.covman.Adapters.ScansAdapter;
 import com.tekdevisal.covman.Helpers.Accessories;
+import com.tekdevisal.covman.Helpers.Functions;
+import com.tekdevisal.covman.Helpers.Urls;
 import com.tekdevisal.covman.LocationUtil.LocationHelper;
+import com.tekdevisal.covman.Models.ScansModel;
 import com.tekdevisal.covman.Services.Incoming_calls_service;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
+import java.util.function.Function;
 
 public class MainActivity extends AppCompatActivity {
 //        implements GoogleApiClient.ConnectionCallbacks,
@@ -51,6 +72,14 @@ public class MainActivity extends AppCompatActivity {
     private LocationHelper locationHelper;
     private Location myLocation;
     double latitudeD,longitudeD;
+
+    // recycler initializations
+    private RecyclerView                    _recycler;
+    private RecyclerView.Adapter            _adapter;
+    private RecyclerView.LayoutManager      _layout;
+    private ArrayList<ScansModel>           _list;
+
+    private ProgressBar                     loading;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -103,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
 //        latitudeD = Double.parseDouble(main_accessor.getString("saved_latitude"));
 //        longitudeD = Double.parseDouble(main_accessor.getString("saved_longitude"));
 
-
+        loading             = findViewById(R.id.loading);
         top_text            = findViewById(R.id.top_text);
         welcome_user        = findViewById(R.id.welcome_user);
         image               = findViewById(R.id.image);
@@ -144,16 +173,27 @@ public class MainActivity extends AppCompatActivity {
             is_available_layout.setVisibility(View.VISIBLE);
 
             is_available_switch.setOnCheckedChangeListener((buttonView, isChecked) -> {
-                if(isChecked){
-                    Doctor_is_Available();
-                }else{
-                    Doctor_is_UnAvailable();
+                if(main_accessor.isNetworkAvailable()){
+                    if (isChecked) {
+                        Doctor_is_Available();
+                    } else {
+                        Doctor_is_UnAvailable();
+                    }
+                }
+                else{
+                    new Functions(this).showAlertDialogueWithOK("No internet connection");
                 }
             });
 
         }else{
             top_text.setTextSize(25);
-            //TODO: fetchAllScans();
+            if(main_accessor.isNetworkAvailable()){
+                initializeRecyclerView();
+                new FetchRecentScan().execute();
+            }
+            else{
+                new Functions(this).showAlertDialogueWithOK("No internet connection");
+            }
         }
         //swipe selections
 //        SwipeSelector swipeSelector = (SwipeSelector) findViewById(R.id.swipe_selector);
@@ -216,7 +256,7 @@ public class MainActivity extends AppCompatActivity {
             logout.setTitle("Signing Out?");
             logout.setMessage("Leaving us? Please reconsider.");
             logout.setNegativeButton("Sign out", (dialog, which) -> {
-                if(isNetworkAvailable()){
+                if(main_accessor.isNetworkAvailable()){
                     FirebaseAuth.getInstance().signOut();
                     main_accessor.put("has_named", "false");
                     main_accessor.clearStore();
@@ -232,6 +272,17 @@ public class MainActivity extends AppCompatActivity {
             logout.setPositiveButton("Stay", (dialog, which) -> dialog.cancel());
             logout.show();
         });
+    }
+
+    private void initializeRecyclerView() {
+        _list       = new ArrayList<>();
+        _recycler   = findViewById(R.id.recyclerView);
+        _recycler.setNestedScrollingEnabled(false);
+        _recycler.setHasFixedSize(false);
+        _layout     = new LinearLayoutManager(getApplicationContext(), LinearLayout.VERTICAL, false);
+        _recycler.setLayoutManager(_layout);
+        _adapter    = new ScansAdapter(_list,getApplicationContext());
+        _recycler.setAdapter(_adapter);
     }
 
     private void Doctor_is_Available() {
@@ -301,13 +352,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private boolean isNetworkAvailable() {
-        ConnectivityManager connectivityManager
-                = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
-        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
-    }
-
     @Override
     protected void onPause() {
         super.onPause();
@@ -329,5 +373,83 @@ public class MainActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         Doctor_is_UnAvailable();
+    }
+
+    private class FetchRecentScan extends AsyncTask<String, String, String> {
+
+        String responseCode = "";
+
+        @Override
+        protected void onPreExecute() {
+            loading.setVisibility(View.VISIBLE);
+            super.onPreExecute();
+        }
+
+        @Override
+        protected String doInBackground(String... strings) {
+            RequestQueue requestQueue = Volley.newRequestQueue(MainActivity.this);
+            StringRequest postRequest = new StringRequest(Request.Method.POST, new Urls().fetchRecentScan_url,
+                    response -> {
+                        // response
+                        Log.d("Response", response);
+                        if(responseCode.equals("200")){
+                            JSONObject object = new Functions(MainActivity.this).FetchDataFromJson(response);
+                            //creating a attendance object and giving them the values from json object
+                            ScansModel obj_model = null;
+                            try {
+                                obj_model = new ScansModel(object.getString("id"), object.getString("date"),
+                                        object.getString("time"), object.getString("temperature"), object.getString("status"));
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                            _list.add(obj_model);
+                            try {
+                                _adapter.notifyDataSetChanged();
+                            }catch (ClassCastException e){
+                                e.printStackTrace();
+                            }
+                            catch (NullPointerException e){
+                                e.printStackTrace();
+                            }
+                            catch (IndexOutOfBoundsException e){
+                                e.printStackTrace();
+                            }
+                        }else{
+                            snackbar = Snackbar.make(findViewById(android.R.id.content),
+                                    "Something went wrong.", Snackbar.LENGTH_LONG);
+                            snackbar.show();
+                            return;
+                        }
+                    },
+                    error -> {
+                        // error
+                        Log.d("Error.Response", error.toString());
+                        return;
+                    }
+            ) {
+                @Override
+                protected Map<String, String> getParams()
+                {
+                    Map<String, String>  params = new HashMap<String, String>();
+                    params.put("user_id", main_accessor.getString("user_id"));
+                    return params;
+                }
+
+                @Override
+                protected Response<String> parseNetworkResponse(NetworkResponse response) {
+                    responseCode = String.valueOf(response.statusCode);
+                    return super.parseNetworkResponse(response);
+                }
+            };
+            requestQueue.add(postRequest);
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            findViewById(R.id.no_scans).setVisibility(View.GONE);
+            loading.setVisibility(View.GONE);
+        }
     }
 }

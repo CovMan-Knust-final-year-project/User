@@ -22,7 +22,9 @@ import com.tekdevisal.covman.Helpers.Accessories;
 import com.tekdevisal.covman.Helpers.Functions;
 import com.tekdevisal.covman.Helpers.Urls;
 import com.tekdevisal.covman.Models.AttendanceModel;
+import com.tekdevisal.covman.Models.ScansModel;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -95,25 +97,40 @@ public class Attendance extends AppCompatActivity {
                         // response
                         Log.d("Response", response);
                         if(responseCode.equals("200")){
-                            JSONObject object = new Functions(Attendance.this).FetchDataFromJson(response);
                             //creating a attendance object and giving them the values from json object
-                            AttendanceModel obj_model = null;
                             try {
-                                obj_model = new AttendanceModel(object.getString("venue"), object.getString("date"),
-                                        object.getString("time"));
+                                //getting the whole json object from the response
+                                JSONObject obj = new JSONObject(response);
+
+                                //we have the array named results inside the object
+                                //so here we are getting that json array
+                                JSONArray array = obj.getJSONArray("Server response");
+
+                                //now looping through all the elements of the json array
+                                for (int i = 0; i < array.length(); i++) {
+                                    //getting the json object of the particular index inside the array
+                                    JSONObject object = array.getJSONObject(i);
+                                    AttendanceModel obj_model = null;
+                                    try {
+                                        obj_model = new AttendanceModel(object.getString("venue"), object.getString("date"),
+                                                object.getString("time"));
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
+                                    _list.add(obj_model);
+                                    try {
+                                        _adapter.notifyDataSetChanged();
+                                    }catch (ClassCastException e){
+                                        e.printStackTrace();
+                                    }
+                                    catch (NullPointerException e){
+                                        e.printStackTrace();
+                                    }
+                                    catch (IndexOutOfBoundsException e){
+                                        e.printStackTrace();
+                                    }
+                                }
                             } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-                            _list.add(obj_model);
-                            try {
-                                _adapter.notifyDataSetChanged();
-                            }catch (ClassCastException e){
-                                e.printStackTrace();
-                            }
-                            catch (NullPointerException e){
-                                e.printStackTrace();
-                            }
-                            catch (IndexOutOfBoundsException e){
                                 e.printStackTrace();
                             }
                         }else{
@@ -150,6 +167,7 @@ public class Attendance extends AppCompatActivity {
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
+            findViewById(R.id.no_attendance).setVisibility(View.GONE);
             loading.setVisibility(View.GONE);
         }
     }

@@ -36,7 +36,8 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
         <activity
             android:name=".ProfileActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:windowSoftInputMode="stateHidden"/>
         <activity
             android:name=".RequestVaccine"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
