@@ -178,7 +178,7 @@ public class RequestVaccine extends AppCompatActivity implements GoogleApiClient
                 report_.put("phone_number", phone_number);
                 report_.put("latitude", myLocation.getLatitude());
                 report_.put("longitude", myLocation.getLongitude());
-                report_.put("date", date);
+                report_.put("date", request_accessor.timeStamp());
 
                 reference.setValue(report_).addOnCompleteListener(task -> {
                     if(task.isSuccessful()){

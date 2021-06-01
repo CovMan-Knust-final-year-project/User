@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardCornerRadius="5dp"
+    app:cardCornerRadius="10dp"
+    app:cardBackgroundColor="@color/gray"
     android:id="@+id/report_cardView"
     app:cardElevation="5dp">
 
@@ -15,11 +16,11 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/text_color"
+            android:textColor="@android:color/black"
             android:textSize="20sp"
             android:gravity="center"
             android:id="@+id/address"
-            android:fontFamily="@font/life"/>
+            android:fontFamily="@font/quicksand_bold"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -29,8 +30,8 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="FROM: "
                 android:textSize="13sp"
+                android:fontFamily="@font/quicksand_medium"
                 android:gravity="center_vertical"
                 android:textColor="@color/text_color"
                 android:layout_weight="2"/>
@@ -39,10 +40,11 @@
                 android:id="@+id/patient_name"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="center_vertical"
+                android:gravity="center"
+                android:text="hjkhhjhjkhhk"
                 android:textSize="15sp"
-                android:textColor="@color/colorPrimary"
-                android:fontFamily="@font/life"
+                android:textColor="@android:color/black"
+                android:fontFamily="@font/quicksand_regular"
                 android:layout_weight="1"/>
 
             <ImageView

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Report_Details">
+    tools:context=".RequestedVaccineDetails">
 
     <fragment xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:map="http://schemas.android.com/apk/res-auto"
@@ -37,7 +37,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Name"
-                android:fontFamily="@font/quicksand_semibold"
+                android:fontFamily="@font/quicksand_medium"
                 android:textSize="15sp"
                 android:textColor="@color/colorPrimary"
                 android:layout_marginTop="10dp"
@@ -47,26 +47,26 @@
                 android:id="@+id/patient_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/quicksand_medium"
+                android:fontFamily="@font/quicksand_regular"
                 android:textSize="18sp"
                 android:textColor="@color/text_color"
                 android:gravity="center"/>
 
-             <TextView
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Phone Number"
-                android:fontFamily="@font/quicksand_semibold"
+                android:fontFamily="@font/quicksand_medium"
                 android:textSize="15sp"
-                 android:textColor="@color/colorPrimary"
-                 android:layout_marginTop="10dp"
+                android:textColor="@color/colorPrimary"
+                android:layout_marginTop="10dp"
                 android:gravity="center"/>
 
             <TextView
                 android:id="@+id/patient_phone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/quicksand_medium"
+                android:fontFamily="@font/quicksand_regular"
                 android:textSize="18sp"
                 android:textColor="@color/text_color"
                 android:gravity="center"/>
@@ -75,17 +75,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Address"
-                android:fontFamily="@font/quicksand_semibold"
+                android:fontFamily="@font/quicksand_medium"
                 android:textSize="15sp"
                 android:textColor="@color/colorPrimary"
                 android:layout_marginTop="10dp"
                 android:gravity="center"/>
 
             <TextView
-                android:id="@+id/patient_address"
+                android:id="@+id/address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/quicksand_medium"
+                android:fontFamily="@font/quicksand_regular"
                 android:textSize="18sp"
                 android:textColor="@color/text_color"
                 android:gravity="center"/>
@@ -93,18 +93,19 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Report Details"
-                android:fontFamily="@font/quicksand_semibold"
-                android:textSize="20sp"
-                android:layout_marginTop="30dp"
+                android:text="Time"
+                android:fontFamily="@font/quicksand_medium"
+                android:textSize="15sp"
+                android:textColor="@color/colorPrimary"
+                android:layout_marginTop="10dp"
                 android:gravity="center"/>
 
             <TextView
-                android:id="@+id/report_detail"
+                android:id="@+id/thetime"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/quicksand_medium"
-                android:textSize="17sp"
+                android:textSize="18sp"
                 android:textColor="@color/text_color"
                 android:gravity="center"/>
 
@@ -132,7 +133,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:text="Call Patient"
-                        android:fontFamily="@font/quicksand_regular"
+                        android:fontFamily="@font/quicksand_medium"
                         android:textSize="15sp"
                         android:gravity="center"/>
                 </LinearLayout>
@@ -154,32 +155,31 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:text="Message Patient"
-                        android:fontFamily="@font/quicksand_regular"
+                        android:fontFamily="@font/quicksand_medium"
                         android:textSize="15sp"
                         android:gravity="center"/>
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_weight="1"
-                    android:id="@+id/call_ambulance_layout">
+<!--                <LinearLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="vertical"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:id="@+id/call_ambulance_layout">-->
 
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="43dp"
-                        android:padding="5dp"
-                        android:src="@drawable/ambulance_"/>
+<!--                    <ImageView-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="43dp"-->
+<!--                        android:padding="5dp"-->
+<!--                        android:src="@drawable/ambulance_"/>-->
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text="Request ambulance"
-                        android:fontFamily="@font/quicksand_regular"
-                        android:textSize="15sp"
-                        android:gravity="center"/>
-                </LinearLayout>
+<!--                    <TextView-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:text="Request ambulance"-->
+<!--                        android:textSize="15sp"-->
+<!--                        android:gravity="center"/>-->
+<!--                </LinearLayout>-->
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -198,7 +198,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:text="Dismiss"
-                        android:fontFamily="@font/quicksand_bold"
+                        android:fontFamily="@font/quicksand_medium"
                         android:textSize="15sp"
                         android:gravity="center"/>
                 </LinearLayout>
