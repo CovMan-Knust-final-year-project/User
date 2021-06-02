@@ -411,6 +411,8 @@ public class MainActivity extends AppCompatActivity {
                                         object.getString("time"), object.getString("temperature"), object.getString("status"));
                             } catch (JSONException e) {
                                 e.printStackTrace();
+                            } catch(NullPointerException e){
+                                e.printStackTrace();
                             }
                             _list.add(obj_model);
                             try {

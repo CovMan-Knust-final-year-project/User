@@ -6,6 +6,8 @@ public class Urls {
     //the URL having the json data
     public String userAvailability_url =  initial_url + "is_user_available.php";
 
+    public String docAvailability_url =  initial_url + "is_doc_available.php";
+
     public String fetchUserDetails_url =  initial_url + "fetch_user_details.php";
 
     public String editUserDetails_url =  initial_url + "editUserDetails.php";
