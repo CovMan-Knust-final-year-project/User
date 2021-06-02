@@ -9,15 +9,17 @@ public class Report_Model {
     public String message;
     public LatLng userlocation;
     public String phone_number;
+    public String symptoms;
 
     public Report_Model(String report_id, String person_who_uploaded_id, String title,
-                        String message, LatLng userlocation, String phone_number) {
+                        String message, LatLng userlocation, String phone_number, String symptoms) {
         this.report_id = report_id;
         this.person_who_reported_id = person_who_uploaded_id;
         this.title = title;
         this.message = message;
         this.userlocation = userlocation;
         this.phone_number = phone_number;
+        this.symptoms = symptoms;
     }
 
     public String getReport_Id() {
@@ -39,11 +41,12 @@ public class Report_Model {
     public LatLng getUserlocation() {
         return userlocation;
     }
+
     public String getPhone_number() {
         return phone_number;
     }
 
-
-
-
+    public String getSymptoms() {
+        return symptoms;
+    }
 }

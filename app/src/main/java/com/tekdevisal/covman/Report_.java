@@ -1,5 +1,6 @@
 package com.tekdevisal.covman;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.location.Location;
 import android.net.Uri;
@@ -11,7 +12,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -19,21 +22,42 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.tekdevisal.covman.Helpers.Accessories;
+import com.tekdevisal.covman.Helpers.Functions;
 import com.tekdevisal.covman.LocationUtil.LocationHelper;
 
 import java.util.HashMap;
+import java.util.function.Function;
 
 public class Report_ extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener,ActivityCompat.OnRequestPermissionsResultCallback{
 
-    private String title, message, location_address;
-    private EditText title_edittext, message_edittext;
-    private Snackbar snackbar;
-    private LocationHelper locationHelper;
-    private Location myLocation;
-    double latitudeD,longitudeD;
-    private FirebaseAuth myauth;
-    private DatabaseReference reference;
+    private String                  title, message, location_address, symptoms = "";
+
+    private EditText                title_edittext, message_edittext;
+
+    private Snackbar                snackbar;
+
+    private LocationHelper          locationHelper;
+
+    private Location                myLocation;
+
+    private double                  latitudeD,longitudeD;
+
+    private FirebaseAuth            myauth;
+
+    private DatabaseReference       reference;
+
+    private CheckBox                drycough_checkbox, fever_checkbox, tiredness_checkbox,
+                                    aches_checkbox, sorethroat_checkbox, diarrheoa_checkbox,
+                                    conjunct_checkbox, headache, loss_of_taste, rash_checkbox,
+                                    difficulty_breathing, chest_pain, loss_of_speech;
+
+    private CheckBox[]              symptoms_checkbox;
+
+    private Accessories             report_accessories;
+
+    private ProgressDialog          progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +66,11 @@ public class Report_ extends AppCompatActivity implements GoogleApiClient.Connec
 
         findViewById(R.id.goback).setOnClickListener(view -> finish());
 
-        myauth = FirebaseAuth.getInstance();
+        report_accessories  = new Accessories(this);
+
+        progressBar         = new ProgressDialog(this);
+
+        myauth              = FirebaseAuth.getInstance();
 
         locationHelper = new LocationHelper(Report_.this);
         locationHelper.checkpermission();
@@ -52,8 +80,27 @@ public class Report_ extends AppCompatActivity implements GoogleApiClient.Connec
 
         }
 
-        title_edittext = findViewById(R.id.subject);
-        message_edittext = findViewById(R.id.message);
+        //checkboxes
+        drycough_checkbox   = findViewById(R.id.drycough_checkbox);
+        fever_checkbox      = findViewById(R.id.fever_checkbox);
+        tiredness_checkbox  = findViewById(R.id.tiredness_checkbox);
+        aches_checkbox      = findViewById(R.id.aches_checkbox);
+        sorethroat_checkbox = findViewById(R.id.sorethroat_checkbox);
+        diarrheoa_checkbox  = findViewById(R.id.diarrheoa_checkbox);
+        conjunct_checkbox   = findViewById(R.id.conjunct_checkbox);
+        headache            = findViewById(R.id.headache);
+        loss_of_taste       = findViewById(R.id.loss_of_taste);
+        rash_checkbox       = findViewById(R.id.rash_checkbox);
+        difficulty_breathing = findViewById(R.id.difficulty_breathing);
+        chest_pain          = findViewById(R.id.chest_pain);
+        loss_of_speech      = findViewById(R.id.loss_of_speech);;
+
+        symptoms_checkbox   = new CheckBox[]{drycough_checkbox, fever_checkbox, tiredness_checkbox,
+                                aches_checkbox, sorethroat_checkbox, diarrheoa_checkbox, conjunct_checkbox, headache, loss_of_taste,
+                                rash_checkbox, difficulty_breathing, chest_pain, loss_of_speech};
+
+        title_edittext      = findViewById(R.id.subject);
+        message_edittext    = findViewById(R.id.message);
 
         findViewById(R.id.call).setOnClickListener(v -> {
             openDialer(v,"112");
@@ -80,7 +127,22 @@ public class Report_ extends AppCompatActivity implements GoogleApiClient.Connec
             }
 
             else{
-                Upload_report(title, message);
+                //saving the symptoms
+                for(int i = 0; i < symptoms_checkbox.length; i++){
+                    if(symptoms_checkbox[i].isChecked()){
+                        symptoms += symptoms_checkbox[i].getText() + ",";
+                    }
+                }
+                if(report_accessories.isNetworkAvailable()){
+                    progressBar.setTitle("Reporting case");
+                    progressBar.setMessage("Please Wait...");
+                    progressBar.setCanceledOnTouchOutside(false);
+                    progressBar.show();
+                    Upload_report(title, message, symptoms);
+                }
+                else{
+                    new Functions(this).showAlertDialogueWithOK("No internet connection");
+                }
             }
         });
     }
@@ -140,7 +202,7 @@ public class Report_ extends AppCompatActivity implements GoogleApiClient.Connec
         startActivity(sendIntent);
     }
 
-    private void Upload_report(String title, String message) {
+    private void Upload_report(String title, String message, String symptoms) {
 
         myLocation = locationHelper.getLocation();
 
@@ -150,20 +212,20 @@ public class Report_ extends AppCompatActivity implements GoogleApiClient.Connec
         reference = FirebaseDatabase.getInstance().getReference("reports")
                 .child(myauth.getCurrentUser().getUid());
         if(myLocation != null){
-
             final HashMap<String, Object> report_ = new HashMap<>();
             report_.put("title", title);
             report_.put("message", message);
             report_.put("latitude", latitudeD);
             report_.put("longitude", longitudeD);
             report_.put("phone_number", myauth.getCurrentUser().getPhoneNumber());
-//            report_.put("address", location_address);
+            report_.put("symptoms", symptoms);
 
             reference.push().setValue(report_).addOnCompleteListener(task -> {
                 if(task.isSuccessful()){
-                    snackbar = Snackbar.make(findViewById(android.R.id.content),
-                            "Report Submitted", Snackbar.LENGTH_LONG);
-                    snackbar.show();
+                    progressBar.dismiss();
+                    title_edittext.setText("");
+                    message_edittext.setText("");
+                    new Functions(this).showAlertDialogueWithOK("Report successfully submitted");
                 }
             });
            }else {

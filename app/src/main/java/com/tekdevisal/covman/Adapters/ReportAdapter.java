@@ -102,10 +102,9 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ViewHolder
             report_accessor.put("title", itemList.get(position).getTitle());
             report_accessor.put("message", itemList.get(position).getMessage());
             report_accessor.put("phone_number", itemList.get(position).getPhone_number());
+            report_accessor.put("symptoms", itemList.get(position).getSymptoms());
             report_accessor.put("latitude", String.valueOf(itemList.get(position).getUserlocation().latitude));
             report_accessor.put("longitude", String.valueOf(itemList.get(position).getUserlocation().longitude));
-
-
             v.getContext().startActivity(report_details_intent);
         });
 
