@@ -51,20 +51,24 @@ public class ScansAdapter extends RecyclerView.Adapter<ScansAdapter.ViewHolder>{
         TextView status = holder.view.findViewById(R.id.status);
         adapater = new Accessories(context);
 
-        date.setText(itemList.get(position).getDate());
-        time.setText(itemList.get(position).getTime());
+        try{
+            date.setText(itemList.get(position).getDate());
+            time.setText(itemList.get(position).getTime());
 
-        if(itemList.get(position).getStatus().equals("0")){
-            temperature.setTextColor(context.getResources().getColor(R.color.navy_green));
-            status.setTextColor(context.getResources().getColor(R.color.navy_green));
-            status.setText("Negative");
+            if(itemList.get(position).getStatus().equals("0")){
+                temperature.setTextColor(context.getResources().getColor(R.color.navy_green));
+                status.setTextColor(context.getResources().getColor(R.color.navy_green));
+                status.setText("Negative");
+            }
+            else{
+                temperature.setTextColor(context.getResources().getColor(R.color.colorPrimary));
+                status.setTextColor(context.getResources().getColor(R.color.colorPrimary));
+                status.setText("Positive");
+            }
+            temperature.setText(itemList.get(position).getTemperature() + "\u00B0" + "C");
+        }catch (NullPointerException e){
+            e.printStackTrace();
         }
-        else{
-            temperature.setTextColor(context.getResources().getColor(R.color.colorPrimary));
-            status.setTextColor(context.getResources().getColor(R.color.colorPrimary));
-            status.setText("Positive");
-        }
-        temperature.setText(itemList.get(position).getTemperature() + "\u00B0" + "C");
     }
 
     @Override

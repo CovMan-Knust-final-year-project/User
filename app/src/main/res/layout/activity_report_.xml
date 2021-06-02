@@ -159,6 +159,7 @@
                         android:orientation="horizontal">
 
                         <CheckBox
+                            android:id="@+id/fever_checkbox"
                             android:layout_weight="1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -167,6 +168,7 @@
 
                         <CheckBox
                             android:layout_weight="1"
+                            android:id="@+id/drycough_checkbox"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Dry Cough"
@@ -179,6 +181,7 @@
                         android:orientation="horizontal">
 
                         <CheckBox
+                            android:id="@+id/tiredness_checkbox"
                             android:layout_weight="1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -186,6 +189,7 @@
                             android:fontFamily="@font/quicksand_regular"/>
 
                         <CheckBox
+                            android:id="@+id/aches_checkbox"
                             android:layout_weight="1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -199,6 +203,7 @@
                         android:orientation="horizontal">
 
                         <CheckBox
+                            android:id="@+id/sorethroat_checkbox"
                             android:layout_weight="1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -206,6 +211,7 @@
                             android:fontFamily="@font/quicksand_regular"/>
 
                         <CheckBox
+                            android:id="@+id/diarrheoa_checkbox"
                             android:layout_weight="1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -219,6 +225,7 @@
                         android:orientation="horizontal">
 
                         <CheckBox
+                            android:id="@+id/conjunct_checkbox"
                             android:layout_weight="1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -226,6 +233,7 @@
                             android:fontFamily="@font/quicksand_regular"/>
 
                         <CheckBox
+                            android:id="@+id/headache"
                             android:layout_weight="1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -239,6 +247,7 @@
                         android:orientation="horizontal">
 
                         <CheckBox
+                            android:id="@+id/loss_of_taste"
                             android:layout_weight="1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -248,6 +257,7 @@
                     </LinearLayout>
 
                     <CheckBox
+                        android:id="@+id/rash_checkbox"
                         android:layout_weight="1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -255,18 +265,21 @@
                         android:fontFamily="@font/quicksand_regular"/>
 
                     <CheckBox
+                        android:id="@+id/difficulty_breathing"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="difficulty breathing or shortness of breath"
                         android:fontFamily="@font/quicksand_regular"/>
 
                     <CheckBox
+                        android:id="@+id/chest_pain"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="chest pain or pressure"
                         android:fontFamily="@font/quicksand_regular"/>
 
                     <CheckBox
+                        android:id="@+id/loss_of_speech"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="loss of speech or movement"

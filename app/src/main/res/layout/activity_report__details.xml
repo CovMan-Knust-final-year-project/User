@@ -93,6 +93,25 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:text="Symptoms"
+                android:fontFamily="@font/quicksand_semibold"
+                android:textSize="15sp"
+                android:textColor="@color/colorPrimary"
+                android:layout_marginTop="10dp"
+                android:gravity="center"/>
+
+            <TextView
+                android:id="@+id/symptoms"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/quicksand_medium"
+                android:textSize="19sp"
+                android:textColor="@color/text_color"
+                android:gravity="center"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:text="Report Details"
                 android:fontFamily="@font/quicksand_semibold"
                 android:textSize="20sp"

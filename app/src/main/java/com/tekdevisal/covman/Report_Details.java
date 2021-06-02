@@ -31,12 +31,16 @@ import java.util.Locale;
 
 public class Report_Details extends AppCompatActivity implements OnMapReadyCallback{
 
-    private String report_id,patient_id, title, message, latitude, longitude,user_address,
-            patient_name_string,patient_phone_number,add;
-    private Accessories report_accessor;
-    private GoogleMap mMap;
-    private TextView patient_name, patient_number, patient_address, report_detail;
-    private Snackbar snackbar;
+    private String              report_id,patient_id, title, message, latitude, longitude,user_address,
+                                patient_name_string,patient_phone_number,add,symptoms;
+
+    private Accessories         report_accessor;
+
+    private GoogleMap           mMap;
+
+    private TextView            patient_name, patient_number, patient_address, symptoms_textview, report_detail;
+
+    private Snackbar            snackbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +52,7 @@ public class Report_Details extends AppCompatActivity implements OnMapReadyCallb
         patient_name = findViewById(R.id.patient_name);
         patient_number = findViewById(R.id.patient_phone);
         patient_address =findViewById(R.id.patient_address);
+        symptoms_textview =findViewById(R.id.symptoms);
         report_detail =findViewById(R.id.report_detail);
 
         report_accessor = new Accessories(Report_Details.this);
@@ -59,6 +64,7 @@ public class Report_Details extends AppCompatActivity implements OnMapReadyCallb
         latitude = report_accessor.getString("latitude");
         longitude = report_accessor.getString("longitude");
         patient_phone_number = report_accessor.getString("phone_number");
+        symptoms = report_accessor.getString("symptoms");
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -68,6 +74,7 @@ public class Report_Details extends AppCompatActivity implements OnMapReadyCallb
         patient_name.setText(patient_name_string);
         patient_number.setText(patient_phone_number);
         patient_address.setText(user_address);
+        symptoms_textview.setText(symptoms);
         report_detail.setText(message);
         getAddress(Double.parseDouble(latitude), Double.parseDouble(longitude),patient_address);
 

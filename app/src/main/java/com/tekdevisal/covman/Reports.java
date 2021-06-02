@@ -25,13 +25,19 @@ import java.util.ArrayList;
 
 public class Reports extends AppCompatActivity {
 
-    private ArrayList reportArray = new ArrayList<Report_Model>();
-    private RecyclerView report_RecyclerView;
-    private RecyclerView.Adapter report_Adapter;
-    private TextView no_reports;
-    private Snackbar snackbar;
-    private String title, message, phone_number;
-    private Double latitude_, longitude_;
+    private ArrayList               reportArray = new ArrayList<Report_Model>();
+
+    private RecyclerView            report_RecyclerView;
+
+    private RecyclerView.Adapter    report_Adapter;
+
+    private TextView                no_reports;
+
+    private Snackbar                snackbar;
+
+    private String                  title, message, phone_number, symptoms;
+
+    private Double                  latitude_, longitude_;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -137,13 +143,17 @@ public class Reports extends AppCompatActivity {
                                 phone_number = child.getValue().toString();
                             }
 
+                            if(child.getKey().equals("symptoms")){
+                                symptoms = child.getValue().toString();
+                            }
+
                             else{
 //                            Toast.makeText(getActivity(),"Couldn't fetch posts",Toast.LENGTH_LONG).show();
                             }
                         }
                         LatLng user_location = new LatLng(latitude_,longitude_);
                         Report_Model obj = new Report_Model(report_key,person_who_uploaded_id,
-                                title, message, user_location,phone_number);
+                                title, message, user_location,phone_number, symptoms);
                         reportArray.add(obj);
                         report_RecyclerView.setAdapter(report_Adapter);
                         report_Adapter.notifyDataSetChanged();
