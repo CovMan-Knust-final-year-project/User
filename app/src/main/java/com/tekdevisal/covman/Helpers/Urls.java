@@ -16,4 +16,7 @@ public class Urls {
 
     public String fetchRecentScan_url =  initial_url + "fetchRecentScan.php";
 
+    public String fetchSuspectedCases_url =  initial_url + "fetchSuspectedCases.php";
+
+
 }

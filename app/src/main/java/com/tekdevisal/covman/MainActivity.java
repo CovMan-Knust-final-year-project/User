@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
     private SelectableRoundedImageView image;
     private LinearLayout is_available_layout, covid_info, complain_, chat_, statistic, about_app,
                         request_vaccine, scans, recent_scan_layout, request_vaccine_and_scans_layout,
-                        vaccine_requests_and_cases_layout, attendance_layout;
+                        vaccine_requests_and_cases_layout, attendance_layout, suspected_cases;
     private SwitchCompat is_available_switch;
     private LocationHelper locationHelper;
     private Location myLocation;
@@ -150,6 +150,7 @@ public class MainActivity extends AppCompatActivity {
         scans               = findViewById(R.id.scans);
         request_vaccine_and_scans_layout            = findViewById(R.id.request_vaccine_and_scans_layout);
         vaccine_requests_and_cases_layout           = findViewById(R.id.vaccine_requests_and_caseslayout);
+        suspected_cases     = findViewById(R.id.suspected_cases);
 
         doc_reports = findViewById(R.id.reports);
         is_available_switch = findViewById(R.id.is_available_switch);
@@ -171,6 +172,7 @@ public class MainActivity extends AppCompatActivity {
             statistic.setVisibility(View.GONE);
             doc_reports.setVisibility(View.VISIBLE);
             is_available_layout.setVisibility(View.VISIBLE);
+            suspected_cases.setVisibility(View.VISIBLE);
 
             is_available_switch.setOnCheckedChangeListener((buttonView, isChecked) -> {
                 if(main_accessor.isNetworkAvailable()){
@@ -245,6 +247,10 @@ public class MainActivity extends AppCompatActivity {
 
         findViewById(R.id.vaccine_requests).setOnClickListener(view -> {
             startActivity(new Intent(MainActivity.this, VaccinesRequestedFor.class));
+        });
+
+        suspected_cases.setOnClickListener(view -> {
+            startActivity(new Intent(MainActivity.this, SuspectedCases.class));
         });
 
 //        request_vaccine_and_scans_layout.setOnClickListener(view -> {

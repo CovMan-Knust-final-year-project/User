@@ -521,6 +521,44 @@
                     android:fontFamily="@font/quicksand_regular"/>
             </LinearLayout>
 
+            <LinearLayout
+                android:id="@+id/suspected_cases"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_margin="10dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="25dp"
+                android:paddingBottom="25dp"
+                android:background="@drawable/item_selector"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:src="@drawable/suspect"
+                    android:scaleType="centerCrop"
+                    android:layout_gravity="center"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Suspected Cases"
+                    android:textStyle="bold"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@android:color/black"
+                    android:fontFamily="@font/quicksand_regular"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Potentially harmful cases from the CovMan hardware"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/quicksand_regular"/>
+            </LinearLayout>
+
         </LinearLayout>
 
         <LinearLayout

@@ -32,8 +32,11 @@
         android:roundIcon="@mipmap/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".RequestedVaccineDetails"
-            android:parentActivityName=".VaccinesRequestedFor"/>
+        <activity android:name=".SuspectedCases"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity
+            android:name=".RequestedVaccineDetails"
+            android:parentActivityName=".VaccinesRequestedFor" />
         <activity
             android:name=".VaccinesRequestedFor"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
