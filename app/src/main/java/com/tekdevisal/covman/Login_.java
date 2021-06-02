@@ -139,7 +139,7 @@ public class Login_ extends AppCompatActivity {
                                 new CheckIfUserIsPresent(phonetext.getText().toString().trim()).execute();
                             }
                             else{
-                                sendSMsCode();
+                                new CheckIfDoctorIsPresent(phonetext.getText().toString().trim()).execute();
                             }
                         }else{
                             showSnackBar("Choose user type(eg. user,doctor)");
@@ -220,6 +220,65 @@ public class Login_ extends AppCompatActivity {
                                     sendSMsCode();
                                 }else{
                                     new Functions(Login_.this).showAlertDialogueWithOK("You are not eligible to use this service");
+                                    return;
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }else{
+                            snackbar = Snackbar.make(findViewById(android.R.id.content),
+                                    "Something went wrong.", Snackbar.LENGTH_LONG);
+                            snackbar.show();
+                            return;
+                        }
+                    },
+                    error -> {
+                        // error
+                        Log.d("Error.Response", error.toString());
+                        return;
+                    }
+            ) {
+                @Override
+                protected Map<String, String> getParams()
+                {
+                    Map<String, String>  params = new HashMap<String, String>();
+                    params.put("phone_number", phoneNumber);
+                    return params;
+                }
+
+                @Override
+                protected Response<String> parseNetworkResponse(NetworkResponse response) {
+                    responseCode = String.valueOf(response.statusCode);
+                    return super.parseNetworkResponse(response);
+                }
+            };
+            requestQueue.add(postRequest);
+            return null;
+        }
+    }
+
+    private class CheckIfDoctorIsPresent extends AsyncTask<String, String, String> {
+        String phoneNumber = "";
+
+        public CheckIfDoctorIsPresent(String phoneNumber) {
+            this.phoneNumber = phoneNumber;
+        }
+
+        @Override
+        protected String doInBackground(String... strings) {
+            RequestQueue requestQueue = Volley.newRequestQueue(Login_.this);
+            StringRequest postRequest = new StringRequest(Request.Method.POST, new Urls().docAvailability_url,
+                    response -> {
+                        // response
+                        Log.d("Response", response);
+                        if(responseCode.equals("200")){
+                            JSONObject object = new Functions(Login_.this).FetchDataFromJson(response);
+                            try {
+                                if(object.getString("message").equals("doc present")){
+                                    login_accessor.put("raw_phone_number", phonetext.getText().toString().trim());
+                                    sendSMsCode();
+                                }else{
+                                    new Functions(Login_.this).showAlertDialogueWithOK("You are not a registered Doctor");
                                     return;
                                 }
                             } catch (JSONException e) {
