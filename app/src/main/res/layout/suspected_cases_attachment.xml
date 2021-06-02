@@ -4,6 +4,7 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="10dp"
+    android:layout_margin="5dp"
     app:cardBackgroundColor="@color/gray"
     android:id="@+id/report_cardView"
     app:cardElevation="5dp">
@@ -19,8 +20,8 @@
             android:layout_height="wrap_content"
             android:textColor="@android:color/black"
             android:textSize="20sp"
-            android:gravity="center"
-            android:id="@+id/address"
+            android:gravity="left"
+            android:id="@+id/patient_name"
             android:fontFamily="@font/quicksand_bold"/>
 
         <LinearLayout
@@ -29,19 +30,10 @@
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/date"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:textSize="13sp"
-                android:fontFamily="@font/quicksand_medium"
-                android:gravity="center_vertical"
-                android:textColor="@color/text_color"
-                android:layout_weight="2"/>
-
-            <TextView
-                android:id="@+id/patient_name"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
+                android:gravity="left"
                 android:textSize="15sp"
                 android:textColor="@android:color/black"
                 android:fontFamily="@font/quicksand_regular"
@@ -56,6 +48,26 @@
                 android:layout_weight="2"/>
 
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/org"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="left"
+            android:textSize="15sp"
+            android:textColor="@color/colorPrimary"
+            android:fontFamily="@font/quicksand_regular"
+            android:layout_weight="1"/>
+
+        <TextView
+            android:id="@+id/time"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="left"
+            android:textSize="15sp"
+            android:textColor="@android:color/black"
+            android:fontFamily="@font/quicksand_regular"
+            android:layout_weight="1"/>
     </LinearLayout>
 
 
