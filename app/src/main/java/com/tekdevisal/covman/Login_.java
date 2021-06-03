@@ -117,38 +117,38 @@ public class Login_ extends AppCompatActivity {
         continueNextButton.setOnClickListener(v -> {
             if(continueNextButton.getText().equals("Submit") || checker.equals("Code Sent")){
 //                if(isNetworkAvailable()){
-                    String verificationcode = codeText.getText().toString().trim();
+                String verificationcode = codeText.getText().toString().trim();
 
-                    if(verificationcode.equals("")){
-                        showSnackBar("Code required");
-                    }else{
-                        showProgressBar("Code Verification", "Please Wait. We are verifying your phone number");
-                        //TODO: check to see if the user has been registered by the admin.
-
-                        PhoneAuthCredential credential = PhoneAuthProvider.getCredential(mVerificationId, verificationcode);
-                        signInWithPhoneAuthCredential(credential);
-                    }
+                if(verificationcode.equals("")){
+                    showSnackBar("Code required");
                 }else{
-//                    phonetext.getText().toString().trim();
-                    phoneNumber = ccp.getFullNumberWithPlus();
-                    if(!phoneNumber.equals("")){
-                        if(!which_user.equals("")){
+                    showProgressBar("Code Verification", "Please Wait. We are verifying your phone number");
+                    //TODO: check to see if the user has been registered by the admin.
 
-                            //TODO: check to see if the user is in the database before sending the code.
-                            if(which_user.equals("normal_user")){
-                                new CheckIfUserIsPresent(phonetext.getText().toString().trim()).execute();
-                            }
-                            else{
-                                new CheckIfDoctorIsPresent(phonetext.getText().toString().trim()).execute();
-                            }
-                        }else{
-                            showSnackBar("Choose user type(eg. user,doctor)");
-                        }
-                            // OnVerificationStateChangedCallbacks
-                    }else{
-                       showSnackBar("Number Invalid");
-                    }
+                    PhoneAuthCredential credential = PhoneAuthProvider.getCredential(mVerificationId, verificationcode);
+                    signInWithPhoneAuthCredential(credential);
                 }
+            }else{
+//                    phonetext.getText().toString().trim();
+                phoneNumber = ccp.getFullNumberWithPlus();
+                if(!phoneNumber.equals("")){
+                    if(!which_user.equals("")){
+
+                        //TODO: check to see if the user is in the database before sending the code.
+                        if(which_user.equals("normal_user")){
+                            new CheckIfUserIsPresent(phonetext.getText().toString().trim()).execute();
+                        }
+                        else{
+                            new CheckIfDoctorIsPresent(phonetext.getText().toString().trim()).execute();
+                        }
+                    }else{
+                        showSnackBar("Choose user type(eg. user,doctor)");
+                    }
+                    // OnVerificationStateChangedCallbacks
+                }else{
+                    showSnackBar("Number Invalid");
+                }
+            }
 //                }else{
 //                    snackbar = Snackbar.make(findViewById(android.R.id.content),
 //                            "No internet connection", Snackbar.LENGTH_LONG);
@@ -206,6 +206,12 @@ public class Login_ extends AppCompatActivity {
         }
 
         @Override
+        protected void onPreExecute() {
+            showProgressBar("Checking Eligibility..","Please Wait. We are checking your eligibility to use this service");
+            super.onPreExecute();
+        }
+
+        @Override
         protected String doInBackground(String... strings) {
             RequestQueue requestQueue = Volley.newRequestQueue(Login_.this);
             StringRequest postRequest = new StringRequest(Request.Method.POST, new Urls().userAvailability_url,
@@ -255,6 +261,12 @@ public class Login_ extends AppCompatActivity {
             requestQueue.add(postRequest);
             return null;
         }
+
+        @Override
+        protected void onPostExecute(String s) {
+            loadingbar.dismiss();
+            super.onPostExecute(s);
+        }
     }
 
     private class CheckIfDoctorIsPresent extends AsyncTask<String, String, String> {
@@ -262,6 +274,12 @@ public class Login_ extends AppCompatActivity {
 
         public CheckIfDoctorIsPresent(String phoneNumber) {
             this.phoneNumber = phoneNumber;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            showProgressBar("Checking Eligibility..","Please Wait. We are checking your eligibility to use this service");
+            super.onPreExecute();
         }
 
         @Override
@@ -314,6 +332,12 @@ public class Login_ extends AppCompatActivity {
             requestQueue.add(postRequest);
             return null;
         }
+
+        @Override
+        protected void onPostExecute(String s) {
+            loadingbar.dismiss();
+            super.onPostExecute(s);
+        }
     }
 
     private void sendSMsCode(){
@@ -345,9 +369,6 @@ public class Login_ extends AppCompatActivity {
                         //check if user already has name in database
                         if(mAuth.getCurrentUser() != null){
 
-                            //create node here
-//                            CreateUserNode(mAuth.getCurrentUser());
-
                             if(which_user.equals("normal_user")){
                                 try{
                                     DatabaseReference find_user = FirebaseDatabase.getInstance().getReference("users")
@@ -378,33 +399,33 @@ public class Login_ extends AppCompatActivity {
                                 }
 
                             }else{
-                               try {
-                                   DatabaseReference find_user = FirebaseDatabase.getInstance().getReference("doctors")
-                                           .child(mAuth.getCurrentUser().getUid());
-                                   find_user.addListenerForSingleValueEvent(new ValueEventListener() {
-                                       @Override
-                                       public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                           if(dataSnapshot.child("name").getValue() != null){
-                                               Intent gohome = new Intent(Login_.this, MainActivity.class);
-                                               login_accessor.put("user_type", which_user);
-                                               startActivity(gohome);
-                                               finish();
-                                           }else{
-                                               Intent go_register = new Intent(Login_.this, Register.class);
-                                               login_accessor.put("user_type", which_user);
-                                               startActivity(go_register);
-                                               finish();
-                                           }
-                                       }
+                                try {
+                                    DatabaseReference find_user = FirebaseDatabase.getInstance().getReference("doctors")
+                                            .child(mAuth.getCurrentUser().getUid());
+                                    find_user.addListenerForSingleValueEvent(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                            if(dataSnapshot.child("name").getValue() != null){
+                                                Intent gohome = new Intent(Login_.this, MainActivity.class);
+                                                login_accessor.put("user_type", which_user);
+                                                startActivity(gohome);
+                                                finish();
+                                            }else{
+                                                Intent go_register = new Intent(Login_.this, Register.class);
+                                                login_accessor.put("user_type", which_user);
+                                                startActivity(go_register);
+                                                finish();
+                                            }
+                                        }
 
-                                       @Override
-                                       public void onCancelled(@NonNull DatabaseError databaseError) {
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                                       }
-                                   });
-                               }catch (DatabaseException e){
-                                   e.printStackTrace();
-                               }
+                                        }
+                                    });
+                                }catch (DatabaseException e){
+                                    e.printStackTrace();
+                                }
                             }
 
                         }

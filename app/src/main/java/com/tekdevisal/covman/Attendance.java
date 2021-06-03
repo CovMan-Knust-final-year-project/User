@@ -118,6 +118,7 @@ public class Attendance extends AppCompatActivity {
                                         e.printStackTrace();
                                     }
                                     _list.add(obj_model);
+                                    findViewById(R.id.no_attendance).setVisibility(View.GONE);
                                     try {
                                         _adapter.notifyDataSetChanged();
                                     }catch (ClassCastException e){

@@ -121,6 +121,7 @@ public class AllScans extends AppCompatActivity {
 //                                e.printStackTrace();
 //                            }
                                     _list.add(obj_model);
+                                    findViewById(R.id.no_scans).setVisibility(View.GONE);
                                     try {
                                         _adapter.notifyDataSetChanged();
                                     }catch (ClassCastException e){
@@ -170,7 +171,6 @@ public class AllScans extends AppCompatActivity {
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-            findViewById(R.id.no_scans).setVisibility(View.GONE);
             loading.setVisibility(View.GONE);
         }
     }

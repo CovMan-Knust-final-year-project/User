@@ -405,25 +405,38 @@ public class MainActivity extends AppCompatActivity {
                         if(responseCode.equals("200")){
                             JSONObject object = new Functions(MainActivity.this).FetchDataFromJson(response);
                             //creating a attendance object and giving them the values from json object
-                            ScansModel obj_model = null;
+
+//                            check to see if item was found
                             try {
-                                obj_model = new ScansModel(object.getString("id"), object.getString("date"),
-                                        object.getString("time"), object.getString("temperature"), object.getString("status"));
+                                if(object.getString("message").equals("200")){
+                                    ScansModel obj_model = null;
+                                    try {
+                                        obj_model = new ScansModel(object.getString("id"), object.getString("date"),
+                                                object.getString("time"), object.getString("temperature"), object.getString("status"));
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    } catch(NullPointerException e){
+                                        e.printStackTrace();
+                                    }
+                                    _list.add(obj_model);
+                                    try {
+                                        _adapter.notifyDataSetChanged();
+                                    }catch (ClassCastException e){
+                                        e.printStackTrace();
+                                    }
+                                    catch (NullPointerException e){
+                                        e.printStackTrace();
+                                    }
+                                    catch (IndexOutOfBoundsException e){
+                                        e.printStackTrace();
+                                    }
+                                }
+                                else{
+                                    findViewById(R.id.no_scans).setVisibility(View.VISIBLE);
+                                }
                             } catch (JSONException e) {
                                 e.printStackTrace();
-                            } catch(NullPointerException e){
-                                e.printStackTrace();
-                            }
-                            _list.add(obj_model);
-                            try {
-                                _adapter.notifyDataSetChanged();
-                            }catch (ClassCastException e){
-                                e.printStackTrace();
-                            }
-                            catch (NullPointerException e){
-                                e.printStackTrace();
-                            }
-                            catch (IndexOutOfBoundsException e){
+                            }catch (NullPointerException e){
                                 e.printStackTrace();
                             }
                         }else{
