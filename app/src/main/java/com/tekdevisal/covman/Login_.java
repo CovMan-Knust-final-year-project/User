@@ -206,6 +206,12 @@ public class Login_ extends AppCompatActivity {
         }
 
         @Override
+        protected void onPreExecute() {
+            showProgressBar("Checking Eligibility..","Please Wait. We are checking your eligibility to use this service");
+            super.onPreExecute();
+        }
+
+        @Override
         protected String doInBackground(String... strings) {
             RequestQueue requestQueue = Volley.newRequestQueue(Login_.this);
             StringRequest postRequest = new StringRequest(Request.Method.POST, new Urls().userAvailability_url,
@@ -255,6 +261,12 @@ public class Login_ extends AppCompatActivity {
             requestQueue.add(postRequest);
             return null;
         }
+
+        @Override
+        protected void onPostExecute(String s) {
+            loadingbar.dismiss();
+            super.onPostExecute(s);
+        }
     }
 
     private class CheckIfDoctorIsPresent extends AsyncTask<String, String, String> {
@@ -262,6 +274,12 @@ public class Login_ extends AppCompatActivity {
 
         public CheckIfDoctorIsPresent(String phoneNumber) {
             this.phoneNumber = phoneNumber;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            showProgressBar("Checking Eligibility..","Please Wait. We are checking your eligibility to use this service");
+            super.onPreExecute();
         }
 
         @Override
@@ -313,6 +331,12 @@ public class Login_ extends AppCompatActivity {
             };
             requestQueue.add(postRequest);
             return null;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            loadingbar.dismiss();
+            super.onPostExecute(s);
         }
     }
 
