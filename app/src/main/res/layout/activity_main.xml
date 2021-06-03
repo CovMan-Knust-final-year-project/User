@@ -196,6 +196,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="15dp"
+            android:visibility="gone"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
