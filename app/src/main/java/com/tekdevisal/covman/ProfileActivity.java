@@ -63,6 +63,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         progressbar = new ProgressDialog(this);
 
+        profile_image = findViewById(R.id.profile_image);
         first_name = findViewById(R.id.first_name);
         last_name  = findViewById(R.id.last_name);
         dob        = findViewById(R.id.dob);
@@ -147,7 +148,7 @@ public class ProfileActivity extends AppCompatActivity {
         level_spinner.setSelection(tutor_type.getPosition(profile_accessor.getString("level")));
 
         try{
-            Picasso.with(ProfileActivity.this).load(new Urls().initial_url + "assets/img/members/" + profile_accessor.getString("image")).error(R.drawable.profile_image).placeholder(R.drawable.profile_image).into(profile_image);
+            Picasso.with(ProfileActivity.this).load("https://covman.000webhostapp.com/assets/img/members/" + profile_accessor.getString("image")).error(R.drawable.profile_image).placeholder(R.drawable.profile_image).into(profile_image);
         }catch (NullPointerException e){
             e.printStackTrace();
         }catch (IllegalArgumentException e){
