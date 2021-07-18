@@ -81,11 +81,11 @@ You can be infected by breathing in the virus if you are within close proximity 
         </ScrollView>
 
     </LinearLayout>
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:src="@drawable/cov"
-        android:layout_gravity="bottom"
-        android:layout_marginRight="-300dp"/>
+<!--    <ImageView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:src="@drawable/cov"-->
+<!--        android:layout_gravity="bottom"-->
+<!--        android:layout_marginRight="-300dp"/>-->
 
 </FrameLayout>

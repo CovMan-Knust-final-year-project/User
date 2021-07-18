@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -222,9 +223,11 @@ public class Login_ extends AppCompatActivity {
                             JSONObject object = new Functions(Login_.this).FetchDataFromJson(response);
                             try {
                                 if(object.getString("message").equals("user present")){
+                                    loadingbar.dismiss();
                                     login_accessor.put("raw_phone_number", phonetext.getText().toString().trim());
                                     sendSMsCode();
                                 }else{
+                                    loadingbar.dismiss();
                                     new Functions(Login_.this).showAlertDialogueWithOK("You are not eligible to use this service");
                                     return;
                                 }
@@ -264,7 +267,7 @@ public class Login_ extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String s) {
-            loadingbar.dismiss();
+            //loadingbar.dismiss();
             super.onPostExecute(s);
         }
     }
@@ -293,9 +296,11 @@ public class Login_ extends AppCompatActivity {
                             JSONObject object = new Functions(Login_.this).FetchDataFromJson(response);
                             try {
                                 if(object.getString("message").equals("doc present")){
+                                    loadingbar.dismiss();
                                     login_accessor.put("raw_phone_number", phonetext.getText().toString().trim());
                                     sendSMsCode();
                                 }else{
+                                    loadingbar.dismiss();
                                     new Functions(Login_.this).showAlertDialogueWithOK("You are not a registered Doctor");
                                     return;
                                 }
@@ -335,7 +340,7 @@ public class Login_ extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String s) {
-            loadingbar.dismiss();
+            //loadingbar.dismiss();
             super.onPostExecute(s);
         }
     }
