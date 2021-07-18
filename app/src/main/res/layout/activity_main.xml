@@ -220,7 +220,6 @@
             android:padding="10dp"
             android:layout_marginRight="40dp"
             android:visibility="gone"
-            android:layout_marginTop="-30dp"
             android:background="@drawable/curved_buttom_doc">
 
             <TextView
