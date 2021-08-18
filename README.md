@@ -37,8 +37,8 @@ mask, using sanitizer, checking temperature and so much more.).
 - Doctor
 
 <img src="screenshots/12.png" width="30%">&emsp;<img src="screenshots/13.png" width="30%">
-<img src="screenshots/14.png" width="30%">&emsp;<img src="screenshots/15.png" width="30%">
-<img src="screenshots/16.png" width="30%">&emsp;<img src="screenshots/17.png" width="30%">
+<img src="screenshots/14.jpg" width="30%">&emsp;<img src="screenshots/15.jpg" width="30%">
+<img src="screenshots/16.jpg" width="30%">&emsp;<img src="screenshots/17.jpg" width="30%">
 
 ## :file_folder: Repo Walkthrough
 
